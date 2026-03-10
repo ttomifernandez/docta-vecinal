@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro Vecinal DOCTA</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para Íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        docta: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            500: '#14b8a6', // Teal principal
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Scrollbar para mejor UI */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#home" class="flex items-center gap-2 group">
+                        <div class="w-10 h-10 bg-docta-600 text-white rounded-xl flex items-center justify-center shadow-md group-hover:bg-docta-700 transition-colors">
+                            <i class="fa-solid fa-leaf text-xl"></i>
+                        </div>
+                        <span class="font-bold text-xl tracking-tight text-gray-900 group-hover:text-docta-600 transition-colors">DOCTA</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-600 hover:text-docta-600 font-medium transition-colors">Inicio</a>
+                    <a href="#home-news" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-news').scrollIntoView(), 100)">Novedades</a>
+                    <a href="#home-autoridades" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
+                    <a href="#home-contact" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-contact').scrollIntoView(), 100)">Contacto</a>
+                    <a href="#admin" class="px-4 py-2 text-sm font-semibold text-docta-600 bg-docta-50 rounded-full hover:bg-docta-100 transition-colors">
+                        <i class="fa-solid fa-lock mr-2"></i>Admin
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-docta-600 focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#home" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg">Inicio</a>
+                <a href="#home-news" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Novedades</a>
+                <a href="#home-autoridades" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden'); setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
+                <a href="#admin" class="block px-3 py-3 text-base font-medium text-docta-600 bg-docta-50 rounded-lg mt-4">
+                    <i class="fa-solid fa-user-shield mr-2"></i>Panel de Administración
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- VIEWS CONTAINER -->
+    <main class="flex-grow flex flex-col relative">
+
+        <!-- ==================== VIEW: HOME ==================== -->
+        <div id="view-home" class="view-section flex-grow">
+            
+            <!-- Hero Section -->
+            <section class="relative bg-white pt-16 pb-20 lg:pt-24 lg:pb-28 overflow-hidden">
+                <div class="absolute inset-y-0 right-0 w-1/2 bg-docta-50 rounded-l-full opacity-50 -z-10 translate-x-1/3"></div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                    <div class="text-center max-w-3xl mx-auto">
+                        <span class="text-docta-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Bienvenido a tu barrio</span>
+                        <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
+                            Centro Vecinal <span class="text-docta-600">DOCTA</span>
+                        </h1>
+                        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-2xl mb-8">
+                            Construyendo juntos un espacio más seguro, limpio y conectado. Entérate de las últimas novedades, obras y eventos de nuestra comunidad.
+                        </p>
+                        <div class="flex justify-center gap-4">
+                            <a href="#home-news" class="px-8 py-3 border border-transparent text-base font-medium rounded-full text-white bg-docta-600 hover:bg-docta-700 shadow-lg shadow-docta-500/30 transition-all transform hover:-translate-y-1">
+                                Ver Novedades
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- News/Blog Section -->
+            <section id="home-news" class="py-16 bg-gray-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900">Últimas Novedades</h2>
+                            <p class="mt-2 text-gray-500">Mantente informado sobre lo que pasa en Docta.</p>
+                        </div>
+                        <!-- Categories Filter -->
+                        <div class="flex flex-wrap gap-2" id="public-category-filters">
+                            <!-- Injected via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Grid de Novedades -->
+                    <div id="public-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Injected via JS -->
+                    </div>
+                    
+                    <!-- Empty State -->
+                    <div id="public-news-empty" class="hidden text-center py-20">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4">
+                            <i class="fa-regular fa-folder-open text-2xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-gray-900">No hay novedades</h3>
+                        <p class="text-gray-500">Aún no se han publicado artículos en esta categoría.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Autoridades Section -->
+            <section id="home-autoridades" class="py-16 bg-white border-t border-gray-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center max-w-3xl mx-auto mb-16">
+                        <span class="text-docta-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Comisión Directiva</span>
+                        <h2 class="text-3xl font-bold text-gray-900">Nuestras Autoridades</h2>
+                        <p class="mt-4 text-lg text-gray-500">Conoce a los vecinos que trabajan día a día, ad honorem, para mejorar nuestra comunidad y representar los intereses del barrio.</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <!-- Presidente -->
+                        <div class="text-center group">
+                            <div class="relative inline-block">
+                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="Presidente">
+                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-gray-900">Carlos Mendoza</h3>
+                                <p class="text-docta-600 font-medium mt-1">Presidente</p>
+                                <p class="text-sm text-gray-500 mt-2">Vecino desde 2005. Arquitecto.</p>
+                            </div>
+                        </div>
+
+                        <!-- Secretaria -->
+                        <div class="text-center group">
+                            <div class="relative inline-block">
+                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Secretaria">
+                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-gray-900">Laura Ríos</h3>
+                                <p class="text-docta-600 font-medium mt-1">Secretaria General</p>
+                                <p class="text-sm text-gray-500 mt-2">Vecina desde 2012. Docente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Tesorero -->
+                        <div class="text-center group">
+                            <div class="relative inline-block">
+                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Tesorero">
+                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-gray-900">Martín Benítez</h3>
+                                <p class="text-docta-600 font-medium mt-1">Tesorero</p>
+                                <p class="text-sm text-gray-500 mt-2">Vecino desde 2010. Contador público.</p>
+                            </div>
+                        </div>
+
+                        <!-- Vocal -->
+                        <div class="text-center group">
+                            <div class="relative inline-block">
+                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Vocal">
+                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+                            </div>
+                            <div class="mt-6">
+                                <h3 class="text-xl font-bold text-gray-900">Silvia Romero</h3>
+                                <p class="text-docta-600 font-medium mt-1">Vocal Titular</p>
+                                <p class="text-sm text-gray-500 mt-2">Vecina desde 1998. Comerciante.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Mini-Section -->
+            <section id="home-contact" class="py-16 bg-gray-50 border-t border-gray-100">
+                <div class="max-w-4xl mx-auto px-4 text-center">
+                    <h2 class="text-2xl font-bold text-gray-900 mb-6">¿Tienes sugerencias para el barrio?</h2>
+                    <div class="flex flex-col sm:flex-row justify-center gap-6 text-gray-600">
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-location-dot text-docta-600"></i>
+                            <span>Sede Social: Calle Falsa 123, Docta</span>
+                        </div>
+                        <div class="flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-envelope text-docta-600"></i>
+                            <span>contacto@vecinaldocta.com</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ==================== VIEW: ARTICLE DETAIL ==================== -->
+        <div id="view-article" class="view-section hidden flex-grow bg-white py-12 fade-in">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Back Button -->
+                <a href="#home" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-docta-600 mb-8 transition-colors">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Volver a la portada
+                </a>
+
+                <article id="article-container">
+                    <!-- Injected via JS -->
+                </article>
+            </div>
+        </div>
+
+        <!-- ==================== VIEW: LOGIN ==================== -->
+        <div id="view-login" class="view-section hidden flex-grow bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 fade-in">
+            <div class="max-w-md w-full bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <div class="text-center mb-8">
+                    <div class="w-12 h-12 mx-auto bg-docta-600 text-white rounded-xl flex items-center justify-center shadow-md mb-4">
+                        <i class="fa-solid fa-lock text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Acceso Directiva</h2>
+                    <p class="text-sm text-gray-500 mt-2">Ingresa tus credenciales para administrar.</p>
+                </div>
+                <form id="form-login" class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                        <input type="email" id="login-email" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+                        <input type="password" id="login-password" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none">
+                    </div>
+                    <button type="submit" class="w-full py-3 px-4 bg-docta-600 hover:bg-docta-700 text-white font-medium rounded-xl transition-colors shadow-md">
+                        Iniciar Sesión
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ==================== VIEW: ADMIN DASHBOARD ==================== -->
+        <div id="view-admin" class="view-section hidden flex-grow bg-gray-100 fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                    <div>
+                        <h1 class="text-3xl font-bold text-gray-900">Panel de Administración</h1>
+                        <p class="text-gray-500 mt-1">Gestiona las novedades y categorías del centro vecinal.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <a href="#home" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shadow-sm">
+                            <i class="fa-solid fa-external-link-alt mr-2"></i>Ver Sitio
+                        </a>
+                        <button id="btn-logout" class="px-4 py-2 bg-red-50 border border-red-100 rounded-lg text-sm font-medium text-red-600 hover:bg-red-100 transition-colors shadow-sm">
+                            <i class="fa-solid fa-right-from-bracket mr-2"></i>Salir
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Columna Izquierda: Formularios -->
+                    <div class="lg:col-span-1 space-y-6">
+                        
+                        <!-- Form Novedades -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-pen-to-square mr-2 text-docta-600"></i>Publicar Novedad</h2>
+                            <form id="form-news" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
+                                    <input type="text" id="news-title" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                                    <select id="news-category" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none bg-white">
+                                        <!-- Injected via JS -->
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen (Opcional)</label>
+                                    <input type="url" id="news-image" placeholder="https://ejemplo.com/foto.jpg" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
+                                    <p class="text-xs text-gray-400 mt-1">Si se deja en blanco, se usará una imagen por defecto.</p>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción Corta (Home)</label>
+                                    <textarea id="news-short" required rows="2" maxlength="150" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all resize-none"></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contenido Completo</label>
+                                    <textarea id="news-long" required rows="6" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all"></textarea>
+                                </div>
+
+                                <div class="flex gap-2">
+                                    <button type="submit" id="btn-submit-news" class="w-full py-3 px-4 bg-docta-600 hover:bg-docta-700 text-white font-medium rounded-xl transition-colors shadow-md shadow-docta-500/20">
+                                        Publicar Artículo
+                                    </button>
+                                    <button type="button" id="btn-cancel-edit" class="hidden w-1/3 py-3 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-xl transition-colors">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Form Categorías -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-tags mr-2 text-docta-600"></i>Gestor de Categorías</h2>
+                            
+                            <form id="form-category" class="flex gap-2 mb-4">
+                                <input type="text" id="cat-name" placeholder="Nueva categoría..." required class="flex-grow rounded-lg border-gray-300 border p-2 text-sm focus:ring-2 focus:ring-docta-500 outline-none">
+                                <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white px-4 rounded-lg text-sm font-medium transition-colors">Añadir</button>
+                            </form>
+
+                            <div class="max-h-48 overflow-y-auto pr-1">
+                                <ul id="admin-category-list" class="space-y-2">
+                                    <!-- Injected via JS -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha: Listado -->
+                    <div class="lg:col-span-2">
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
+                            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                                <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-list mr-2 text-docta-600"></i>Artículos Publicados</h2>
+                                <span id="admin-news-count" class="bg-gray-200 text-gray-700 py-1 px-3 rounded-full text-xs font-bold">0</span>
+                            </div>
+                            
+                            <div class="p-0 overflow-x-auto flex-grow">
+                                <table class="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-100">
+                                            <th class="p-4 font-medium">Fecha</th>
+                                            <th class="p-4 font-medium">Artículo</th>
+                                            <th class="p-4 font-medium">Categoría</th>
+                                            <th class="p-4 font-medium text-right">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="admin-news-list" class="divide-y divide-gray-100 text-sm">
+                                        <!-- Injected via JS -->
+                                    </tbody>
+                                </table>
+                                
+                                <!-- Empty state Admin -->
+                                <div id="admin-news-empty" class="hidden text-center py-16">
+                                    <p class="text-gray-500">No hay artículos publicados aún.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-4">
+                    <div class="w-8 h-8 bg-docta-600 text-white rounded-lg flex items-center justify-center">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <span class="font-bold text-xl text-white">DOCTA</span>
+                </div>
+                <p class="text-sm text-slate-400">Trabajando por un barrio mejor. Gestionado por vecinos, para los vecinos.</p>
+            </div>
+            <div>
+                <h3 class="text-white font-semibold mb-4">Enlaces Rápidos</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="hover:text-docta-400 transition-colors">Inicio</a></li>
+                    <li><a href="#home-news" class="hover:text-docta-400 transition-colors">Novedades</a></li>
+                    <li><a href="#home-autoridades" class="hover:text-docta-400 transition-colors">Autoridades</a></li>
+                    <li><a href="#admin" class="hover:text-docta-400 transition-colors">Acceso Directiva</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-white font-semibold mb-4">Redes Sociales</h3>
+                <div class="flex justify-center md:justify-start gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-docta-600 hover:text-white transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-docta-600 hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-docta-600 hover:text-white transition-all"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-slate-800 mt-10 pt-6 text-center text-xs text-slate-500">
+            &copy; <span id="year"></span> Centro Vecinal Docta. Todos los derechos reservados. MVP.
+        </div>
+    </footer>
+
+    <!-- Notificaciones Toast -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- SCRIPT DE LA APLICACIÓN -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        // ==========================================
+        // 1. CONFIGURACIÓN FIREBASE
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTVNj1G1Xvoyc4p40bsAfCcImeHYERI68",
+            authDomain: "docta-vecinal.firebaseapp.com",
+            projectId: "docta-vecinal",
+            storageBucket: "docta-vecinal.firebasestorage.app",
+            messagingSenderId: "495101332003",
+            appId: "1:495101332003:web:131d3329c2ce84173b7f96",
+            measurementId: "G-R4YGQYJECB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        // ==========================================
+        // 1. CONFIGURACIÓN FIREBASE
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTVNj1G1Xvoyc4p40bsAfCcImeHYERI68",
+            authDomain: "docta-vecinal.firebaseapp.com",
+            projectId: "docta-vecinal",
+            storageBucket: "docta-vecinal.firebasestorage.app",
+            messagingSenderId: "495101332003",
+            appId: "1:495101332003:web:131d3329c2ce84173b7f96",
+            measurementId: "G-R4YGQYJECB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // ==========================================
+        // 2. DATA LAYER (State)
+        // ==========================================
+        
+        // Datos por defecto para el MVP si está vacío
+        const defaultCategories = ['Obras Públicas', 'Seguridad', 'Eventos', 'Comunidad', 'Salud'];
+        const defaultNews = [
+            {
+                id: '1',
+                title: 'Avanzan las obras en la plaza central',
+                shortDesc: 'Se han instalado los nuevos juegos infantiles y la iluminación LED. La inauguración será el próximo domingo.',
+                longContent: 'Estimados vecinos:\n\nNos alegra informar que la fase 2 de remodelación de nuestra plaza principal ha concluido exitosamente. Gracias al esfuerzo conjunto, ahora contamos con:\n\n- Iluminación LED de bajo consumo en todo el perímetro.\n- Nuevos juegos infantiles homologados y seguros.\n- Bancos de descanso reparados y pintados.\n\nLos invitamos a la reinauguración este domingo a las 16:00 hs. ¡Habrá mate cocido y facturas para compartir en familia!',
+                image: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80',
+                category: 'Obras Públicas',
+                date: new Date().toISOString()
+            },
+            {
+                id: '2',
+                title: 'Reunión de seguridad vecinal',
+                shortDesc: 'Resumen de los puntos tratados con la comisaría local para mejorar el patrullaje nocturno.',
+                longContent: 'El pasado martes nos reunimos con el comisario de la zona para plantear nuestras inquietudes respecto a la seguridad nocturna en el sector sur del barrio.\n\nAcuerdos logrados:\n1. Aumento de la frecuencia de patrullaje entre las 22:00 y las 06:00 hs.\n2. Creación de un nuevo grupo de WhatsApp de alarmas comunitarias, exclusivo para la calle San Martín y aledañas.\n\nRecordamos a todos la importancia de mantener la iluminación del frente de sus hogares encendida durante la noche.',
+                image: 'https://images.unsplash.com/photo-1555921015-5532091f6026?auto=format&fit=crop&w=800&q=80',
+                category: 'Seguridad',
+                date: new Date(Date.now() - 86400000 * 2).toISOString()
+            },
+            {
+                id: '3',
+                title: 'Gran Feria de Emprendedores Locales',
+                shortDesc: 'Este sábado ven a apoyar a los emprendedores del barrio. Habrá artesanías, comida y música en vivo.',
+                longContent: '¡Se viene la primera Feria Docta del año!\n\nMás de 40 vecinos estarán exponiendo sus productos artesanales, gastronomía casera, indumentaria y plantas. Es una excelente oportunidad para apoyar la economía local y pasar un lindo momento en comunidad.\n\nCronograma:\n- 10:00 hs: Apertura de stands.\n- 13:00 hs: Almuerzo comunitario (food trucks disponibles).\n- 17:00 hs: Show musical a cargo de la banda del barrio "Los Doctos".\n\n¡Los esperamos a todos en el polideportivo!',
+                image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80',
+                category: 'Eventos',
+                date: new Date(Date.now() - 86400000 * 5).toISOString()
+            },
+            {
+                id: '4',
+                title: 'Campaña de Vacunación Antigripal',
+                shortDesc: 'El centro de salud móvil visitará el barrio la próxima semana para vacunar a grupos de riesgo.',
+                longContent: 'Información importante para nuestra salud comunitaria:\n\nEl Ministerio de Salud ha confirmado que el vacunatorio móvil estará instalado frente a la sede del Centro Vecinal los días jueves y viernes de la próxima semana, de 09:00 a 14:00 hs.\n\nSe aplicarán dosis de la vacuna antigripal de forma gratuita a:\n- Mayores de 65 años.\n- Mujeres embarazadas.\n- Personas con enfermedades crónicas (presentar certificado).\n- Niños de 6 a 24 meses.\n\nPor favor, asistir con DNI y carnet de vacunación.',
+                image: 'https://images.unsplash.com/photo-1633526543814-9718c8922b7a?auto=format&fit=crop&w=800&q=80',
+                category: 'Salud',
+                date: new Date(Date.now() - 86400000 * 7).toISOString()
+            },
+            {
+                id: '5',
+                title: 'Nuevos horarios para recolección de poda',
+                shortDesc: 'La municipalidad ha actualizado el cronograma mensual para la recolección de restos de poda y escombros.',
+                longContent: 'Atención vecinos,\n\nPara mantener nuestro barrio limpio y ordenado, compartimos el nuevo esquema de recolección de poda dispuesto por la Municipalidad:\n\n- Zona Norte (calles de la 1 a la 10): 1er y 3er lunes del mes.\n- Zona Sur (calles de la 11 a la 20): 2do y 4to lunes del mes.\n\nRecuerden que los restos deben estar embolsados o atados (máximo 1 metro cúbico) y no deben obstruir la vereda ni la calle peatonal. Evitemos multas y cuidemos entre todos el espacio público.',
+                image: 'https://images.unsplash.com/photo-1597063124765-654db389bdde?auto=format&fit=crop&w=800&q=80',
+                category: 'Comunidad',
+                date: new Date(Date.now() - 86400000 * 12).toISOString()
+            },
+            {
+                id: '6',
+                title: 'Taller gratuito de compostaje',
+                shortDesc: 'Aprende a reducir tus residuos orgánicos y crear abono para tus plantas en este taller teórico-práctico.',
+                longContent: 'Seguimos impulsando un barrio más ecológico.\n\nEstán abiertas las inscripciones para el "Taller de Compostaje Domiciliario", dictado por especialistas en medioambiente. \n\n¿Qué aprenderemos?\n- Diferencia entre residuos húmedos y secos.\n- Cómo armar una compostera casera sin gastar dinero.\n- Mantenimiento y solución de problemas comunes (olores, insectos).\n\nEl taller consta de dos encuentros presenciales. Los cupos son limitados. Para anotarse, acercarse a la secretaría del centro vecinal de 18:00 a 20:00 hs.',
+                image: 'https://images.unsplash.com/photo-1558583082-409143c794ca?auto=format&fit=crop&w=800&q=80',
+                category: 'Comunidad',
+                date: new Date(Date.now() - 86400000 * 15).toISOString()
+            }
+        ];
+
+        let state = {
+            news: [],
+            categories: [],
+            currentFilter: 'Todas',
+            editingId: null
+        };
+
+        let currentUser = null;
+        let authInitialized = false;
+
+        // Escuchar estado de autenticación
+        onAuthStateChanged(auth, (user) => {
+            currentUser = user;
+            authInitialized = true;
+            handleRouting();
+        });
+
+        function initDB() {
+            // Escuchar Categorías en Tiempo Real
+            onSnapshot(collection(db, 'categories'), (snapshot) => {
+                state.categories = [];
+                snapshot.forEach(docSnap => {
+                    state.categories.push(docSnap.id);
+                });
+                
+                // Si la base de datos está vacía, la poblamos con los datos por defecto
+                if (snapshot.empty) {
+                    defaultCategories.forEach(cat => {
+                        setDoc(doc(db, 'categories', cat), { createdAt: Date.now() });
+                    });
+                }
+                
+                renderHome();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+            });
+
+            // Escuchar Noticias en Tiempo Real
+            onSnapshot(collection(db, 'news'), (snapshot) => {
+                state.news = [];
+                snapshot.forEach(docSnap => {
+                    state.news.push(docSnap.data());
+                });
+                
+                // Si la base de datos está vacía, la poblamos con los datos por defecto
+                if (snapshot.empty) {
+                    defaultNews.forEach(item => {
+                        setDoc(doc(db, 'news', item.id), item);
+                    });
+                }
+
+                renderHome();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+                
+                // Actualizar la vista de artículo si estamos leyendo uno
+                const hash = window.location.hash;
+                if (hash.startsWith('#article-')) {
+                    renderArticle(hash.replace('#article-', ''));
+                }
+            });
+        }
+
+        // ==========================================
+        // 3. ROUTING LOGIC
+        // ==========================================
+        function handleRouting() {
+            if (!authInitialized) return; // Esperar a que Firebase verifique sesión
+
+            const hash = window.location.hash;
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            
+            // Scroll to top on view change
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (hash === '#admin') {
+                if (!currentUser) {
+                    window.location.hash = '#login';
+                    return;
+                }
+                document.getElementById('view-admin').classList.remove('hidden');
+                renderAdmin();
+            } else if (hash === '#login') {
+                if (currentUser) {
+                    window.location.hash = '#admin';
+                    return;
+                }
+                document.getElementById('view-login').classList.remove('hidden');
+            } else if (hash.startsWith('#article-')) {
+                const id = hash.replace('#article-', '');
+                document.getElementById('view-article').classList.remove('hidden');
+                renderArticle(id);
+            } else {
+                // Default Home
+                document.getElementById('view-home').classList.remove('hidden');
+                renderHome();
+                
+                // Si el hash es #home-news, scrollear ahí después de renderizar
+                if(hash === '#home-news' || hash === '#home-contact' || hash === '#home-autoridades') {
+                    setTimeout(() => {
+                        const el = document.getElementById(hash.substring(1));
+                        if(el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                }
+            }
+        }
+
+        window.addEventListener('hashchange', handleRouting);
+
+        // ==========================================
+        // 4. UI RENDER FUNCTIONS
+        // ==========================================
+        
+        // Utils
+        const formatDate = (dateString) => {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('es-ES', options);
+        };
+
+        const escapeHTML = (str) => {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
+        };
+
+        const formatTextToHTML = (text) => {
+            // Convierte saltos de línea en <br> y respeta párrafos rudimentarios
+            return escapeHTML(text).replace(/\n\n/g, '</p><p class="mt-4">').replace(/\n/g, '<br>');
+        };
+
+        // Render Home Novedades
+        function renderHome() {
+            // Render Categories Filters
+            const filterContainer = document.getElementById('public-category-filters');
+            filterContainer.innerHTML = '';
+            
+            const allBtn = document.createElement('button');
+            allBtn.type = 'button';
+            allBtn.className = `px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${state.currentFilter === 'Todas' ? 'bg-docta-600 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} relative z-20 cursor-pointer`;
+            allBtn.innerText = 'Todas';
+            allBtn.onclick = () => { state.currentFilter = 'Todas'; renderHome(); };
+            filterContainer.appendChild(allBtn);
+
+            state.categories.forEach(cat => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = `px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${state.currentFilter === cat ? 'bg-docta-600 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} relative z-20 cursor-pointer`;
+                btn.innerText = cat;
+                btn.onclick = () => { state.currentFilter = cat; renderHome(); };
+                filterContainer.appendChild(btn);
+            });
+
+            // Render News Grid
+            const grid = document.getElementById('public-news-grid');
+            const emptyState = document.getElementById('public-news-empty');
+            grid.innerHTML = '';
+            
+            // Sort by date desc
+            const sortedNews = [...state.news].sort((a, b) => new Date(b.date) - new Date(a.date));
+            const filteredNews = state.currentFilter === 'Todas' 
+                ? sortedNews 
+                : sortedNews.filter(n => n.category === state.currentFilter);
+
+            if (filteredNews.length === 0) {
+                grid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } else {
+                grid.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                
+                filteredNews.forEach(item => {
+                    // Fallback imagen
+                    const imgUrl = item.image || `https://ui-avatars.com/api/?name=${item.category}&background=0d9488&color=fff&size=512&font-size=0.1&length=3`;
+
+                    const card = document.createElement('article');
+                    // CORRECCIÓN: Se añade 'relative' a la tarjeta para contener el enlace
+                    card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden group relative';
+                    card.innerHTML = `
+                        <div class="relative h-48 overflow-hidden bg-gray-100 z-10">
+                            <a href="#article-${item.id}" class="block w-full h-full">
+                                <img src="${escapeHTML(imgUrl)}" alt="Imagen de novedad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'">
+                            </a>
+                            <div class="absolute top-4 left-4 pointer-events-none">
+                                <span class="bg-white/90 backdrop-blur-sm text-docta-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
+                                    ${escapeHTML(item.category)}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="text-xs text-gray-400 mb-2 flex items-center gap-1">
+                                <i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-docta-600 transition-colors">
+                                <a href="#article-${item.id}" class="focus:outline-none">
+                                    ${escapeHTML(item.title)}
+                                    <span class="absolute inset-0" aria-hidden="true"></span>
+                                </a>
+                            </h3>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
+                                ${escapeHTML(item.shortDesc)}
+                            </p>
+                            <a href="#article-${item.id}" class="mt-auto pt-4 border-t border-gray-50 flex items-center text-sm font-medium text-docta-600 hover:text-docta-700 relative z-10">
+                                Leer más <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        // Render Article Detail
+        function renderArticle(id) {
+            const article = state.news.find(n => n.id === id);
+            const container = document.getElementById('article-container');
+            
+            if (!article) {
+                container.innerHTML = `
+                    <div class="text-center py-20">
+                        <i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-4 block"></i>
+                        <h2 class="text-2xl font-bold text-gray-900">Artículo no encontrado</h2>
+                        <p class="mt-2 text-gray-500">Es posible que haya sido eliminado.</p>
+                    </div>`;
+                return;
+            }
+
+            const imgUrl = article.image || `https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80`;
+
+            container.innerHTML = `
+                <div class="mb-6 flex items-center gap-3">
+                    <span class="bg-docta-50 text-docta-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-docta-100">
+                        ${escapeHTML(article.category)}
+                    </span>
+                    <span class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-1"></i> ${formatDate(article.date)}</span>
+                </div>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
+                    ${escapeHTML(article.title)}
+                </h1>
+                
+                <div class="rounded-2xl overflow-hidden mb-10 shadow-md bg-gray-100 h-64 sm:h-80 md:h-96">
+                    <img src="${escapeHTML(imgUrl)}" alt="Portada" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'">
+                </div>
+
+                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed text-lg pb-10">
+                    <p>${formatTextToHTML(article.longContent)}</p>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-8 mt-8 flex justify-between items-center">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-900">Comisión Directiva</p>
+                            <p class="text-xs text-gray-500">Centro Vecinal Docta</p>
+                        </div>
+                    </div>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); window.showToast('Enlace copiado al portapapeles', 'success')" class="text-gray-500 hover:text-docta-600 bg-gray-50 hover:bg-docta-50 p-2 rounded-full transition-colors tooltip" title="Compartir">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </button>
+                </div>
+            `;
+        }
+
+        // Render Admin Dashboard
+        function renderAdmin() {
+            // Update Select Categories in Form
+            const select = document.getElementById('news-category');
+            select.innerHTML = '';
+            state.categories.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.innerText = cat;
+                select.appendChild(opt);
+            });
+
+            // Update Categories List
+            const catList = document.getElementById('admin-category-list');
+            catList.innerHTML = '';
+            state.categories.forEach((cat, index) => {
+                const li = document.createElement('li');
+                li.className = 'flex justify-between items-center p-2 bg-gray-50 rounded-lg text-sm border border-gray-100';
+                li.innerHTML = `
+                    <span class="font-medium text-gray-700">${escapeHTML(cat)}</span>
+                    <button onclick="deleteCategory(${index})" class="text-red-400 hover:text-red-600 transition-colors p-1" title="Eliminar">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
+                `;
+                catList.appendChild(li);
+            });
+
+            // Update News Table
+            const newsList = document.getElementById('admin-news-list');
+            const emptyState = document.getElementById('admin-news-empty');
+            const count = document.getElementById('admin-news-count');
+            
+            newsList.innerHTML = '';
+            count.innerText = state.news.length;
+            
+            const sortedNews = [...state.news].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            if (sortedNews.length === 0) {
+                newsList.parentElement.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+            } else {
+                newsList.parentElement.classList.remove('hidden');
+                emptyState.classList.add('hidden');
+                
+                sortedNews.forEach(item => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-gray-50 transition-colors group';
+                    tr.innerHTML = `
+                        <td class="p-4 whitespace-nowrap text-gray-500">${new Date(item.date).toLocaleDateString('es-ES')}</td>
+                        <td class="p-4">
+                            <div class="font-medium text-gray-900 truncate max-w-[200px] md:max-w-xs">${escapeHTML(item.title)}</div>
+                        </td>
+                        <td class="p-4 whitespace-nowrap">
+                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">${escapeHTML(item.category)}</span>
+                        </td>
+                        <td class="p-4 text-right whitespace-nowrap">
+                            <a href="#article-${item.id}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-docta-600 hover:bg-docta-50 transition-colors mr-1" title="Ver">
+                                <i class="fa-regular fa-eye"></i>
+                            </a>
+                            <button onclick="editNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar">
+                                <i class="fa-solid fa-pen"></i>
+                            </button>
+                            <button onclick="deleteNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar">
+                                <i class="fa-regular fa-trash-can"></i>
+                            </button>
+                        </td>
+                    `;
+                    newsList.appendChild(tr);
+                });
+            }
+        }
+
+        // ==========================================
+        // 5. CRUD ACTIONS
+        // ==========================================
+        
+        // News
+        document.getElementById('form-news').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if(state.categories.length === 0) {
+                window.showToast('Primero debes crear al menos una categoría.', 'error');
+                return;
+            }
+
+            const title = document.getElementById('news-title').value.trim();
+            const category = document.getElementById('news-category').value;
+            const image = document.getElementById('news-image').value.trim();
+            const shortDesc = document.getElementById('news-short').value.trim();
+            const longContent = document.getElementById('news-long').value.trim();
+
+            try {
+                if (state.editingId) {
+                    // Modo Edición
+                    const oldArticle = state.news.find(n => n.id === state.editingId);
+                    const updatedItem = {
+                        ...oldArticle,
+                        title, category, image, shortDesc, longContent
+                    };
+                    await setDoc(doc(db, 'news', state.editingId), updatedItem);
+                    window.showToast('Artículo actualizado con éxito', 'success');
+                    window.cancelEdit();
+                } else {
+                    // Modo Creación
+                    const newId = Date.now().toString();
+                    const newItem = {
+                        id: newId,
+                        title, category, image, shortDesc, longContent,
+                        date: new Date().toISOString()
+                    };
+                    await setDoc(doc(db, 'news', newId), newItem);
+                    window.showToast('Artículo publicado con éxito', 'success');
+                    e.target.reset();
+                }
+            } catch (error) {
+                console.error("Error saving document: ", error);
+                window.showToast('Error al guardar en la base de datos', 'error');
+            }
+        });
+
+        // Cargar datos para editar
+        window.editNews = (id) => {
+            const article = state.news.find(n => n.id === id);
+            if (!article) return;
+
+            state.editingId = id;
+            document.getElementById('news-title').value = article.title;
+            document.getElementById('news-category').value = article.category;
+            document.getElementById('news-image').value = article.image || '';
+            document.getElementById('news-short').value = article.shortDesc;
+            document.getElementById('news-long').value = article.longContent;
+
+            document.getElementById('btn-submit-news').innerText = 'Actualizar Artículo';
+            document.getElementById('btn-cancel-edit').classList.remove('hidden');
+            
+            // Scrollear suavemente hasta el formulario
+            document.getElementById('form-news').scrollIntoView({ behavior: 'smooth' });
+        };
+
+        // Cancelar edición
+        window.cancelEdit = () => {
+            state.editingId = null;
+            document.getElementById('form-news').reset();
+            document.getElementById('btn-submit-news').innerText = 'Publicar Artículo';
+            document.getElementById('btn-cancel-edit').classList.add('hidden');
+        };
+
+        document.getElementById('btn-cancel-edit').addEventListener('click', window.cancelEdit);
+
+        window.deleteNews = async (id) => {
+            if(confirm('¿Estás seguro de que deseas eliminar este artículo? Esta acción no se puede deshacer.')) {
+                try {
+                    await deleteDoc(doc(db, 'news', id));
+                    window.showToast('Artículo eliminado', 'info');
+                } catch (error) {
+                    console.error("Error deleting document: ", error);
+                    window.showToast('Error al eliminar', 'error');
+                }
+            }
+        };
+
+        // Categories
+        document.getElementById('form-category').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('cat-name');
+            const newCat = input.value.trim();
+            
+            if(newCat && !state.categories.includes(newCat)) {
+                try {
+                    await setDoc(doc(db, 'categories', newCat), { createdAt: Date.now() });
+                    input.value = '';
+                    window.showToast('Categoría agregada', 'success');
+                } catch (error) {
+                    window.showToast('Error al agregar categoría', 'error');
+                }
+            } else if (state.categories.includes(newCat)) {
+                window.showToast('Esa categoría ya existe', 'error');
+            }
+        });
+
+        window.deleteCategory = async (index) => {
+            const catName = state.categories[index];
+            const inUse = state.news.some(n => n.category === catName);
+            
+            if(inUse) {
+                window.showToast(`No se puede eliminar. Hay artículos usando la categoría "${catName}"`, 'error');
+                return;
+            }
+
+            if(confirm(`¿Eliminar la categoría "${catName}"?`)) {
+                try {
+                    await deleteDoc(doc(db, 'categories', catName));
+                    window.showToast('Categoría eliminada', 'info');
+                } catch (error) {
+                    window.showToast('Error al eliminar categoría', 'error');
+                }
+            }
+        };
+
+        // ==========================================
+        // 6. AUTH ACTIONS
+        // ==========================================
+        document.getElementById('form-login').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                window.showToast('Sesión iniciada correctamente', 'success');
+                document.getElementById('form-login').reset();
+                window.location.hash = '#admin';
+            } catch (error) {
+                console.error("Error de login:", error);
+                window.showToast('Credenciales incorrectas', 'error');
+            }
+        });
+
+        document.getElementById('btn-logout').addEventListener('click', async () => {
+            try {
+                await signOut(auth);
+                window.showToast('Sesión cerrada', 'info');
+                window.location.hash = '#home';
+            } catch (error) {
+                window.showToast('Error al cerrar sesión', 'error');
+            }
+        });
+
+        // ==========================================
+        // 7. UI UTILS & INIT
+        // ==========================================
+        
+        // Toast System
+        window.showToast = function(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: 'bg-green-600',
+                error: 'bg-red-600',
+                info: 'bg-gray-800'
+            };
+
+            const icons = {
+                success: 'fa-check-circle',
+                error: 'fa-circle-exclamation',
+                info: 'fa-info-circle'
+            };
+
+            toast.className = `${colors[type]} text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 text-sm font-medium transform transition-all duration-300 translate-y-10 opacity-0`;
+            toast.innerHTML = `<i class="fa-solid ${icons[type]} text-lg"></i> ${escapeHTML(message)}`;
+            
+            container.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 10);
+
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Set current year in footer
+        document.getElementById('year').innerText = new Date().getFullYear();
+
+        // Boot
+        initDB();
+        // El enrutamiento (handleRouting) se ejecutará automáticamente cuando Firebase valide la sesión
+
+    </script>
+</body>
+</html>
