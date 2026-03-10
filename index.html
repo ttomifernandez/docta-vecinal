@@ -51,6 +51,9 @@
             -webkit-box-orient: vertical;  
             overflow: hidden;
         }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
@@ -64,7 +67,7 @@
                         <div class="w-10 h-10 bg-docta-600 text-white rounded-xl flex items-center justify-center shadow-md group-hover:bg-docta-700 transition-colors">
                             <i class="fa-solid fa-leaf text-xl"></i>
                         </div>
-                        <span class="font-bold text-xl tracking-tight text-gray-900 group-hover:text-docta-600 transition-colors">DOCTA</span>
+                        <span id="nav-brand-text" class="font-bold text-xl tracking-tight text-gray-900 group-hover:text-docta-600 transition-colors">DOCTA</span>
                     </a>
                 </div>
                 
@@ -94,6 +97,7 @@
                 <a href="#home" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg">Inicio</a>
                 <a href="#home-news" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Novedades</a>
                 <a href="#home-autoridades" id="nav-mobile-autoridades" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden'); setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
+                <a href="#home-contact" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden'); setTimeout(()=>document.getElementById('home-contact').scrollIntoView(), 100)">Contacto</a>
                 <a href="#admin" class="block px-3 py-3 text-base font-medium text-docta-600 bg-docta-50 rounded-lg mt-4">
                     <i class="fa-solid fa-user-shield mr-2"></i>Panel de Administración
                 </a>
@@ -112,11 +116,11 @@
                 <div class="absolute inset-y-0 right-0 w-1/2 bg-docta-50 rounded-l-full opacity-50 -z-10 translate-x-1/3"></div>
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
                     <div class="text-center max-w-3xl mx-auto">
-                        <span class="text-docta-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Bienvenido a tu barrio</span>
+                        <span id="display-hero-subtitle" class="text-docta-600 font-semibold tracking-wider uppercase text-sm mb-4 block">Bienvenido a tu barrio</span>
                         <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl mb-6">
-                            Centro Vecinal <span class="text-docta-600">DOCTA</span>
+                            <span id="display-hero-title">Centro Vecinal <span class="text-docta-600">DOCTA</span></span>
                         </h1>
-                        <p class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-2xl mb-8">
+                        <p id="display-hero-desc" class="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-2xl mb-8">
                             Construyendo juntos un espacio más seguro, limpio y conectado. Entérate de las últimas novedades, obras y eventos de nuestra comunidad.
                         </p>
                         <div class="flex justify-center gap-4">
@@ -134,7 +138,7 @@
                     <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                         <div>
                             <h2 class="text-3xl font-bold text-gray-900">Últimas Novedades</h2>
-                            <p class="mt-2 text-gray-500">Mantente informado sobre lo que pasa en Docta.</p>
+                            <p class="mt-2 text-gray-500">Mantente informado sobre lo que pasa en el barrio.</p>
                         </div>
                         <!-- Categories Filter -->
                         <div class="flex flex-wrap gap-2" id="public-category-filters">
@@ -173,18 +177,54 @@
                 </div>
             </section>
 
-            <!-- Contact Mini-Section -->
-            <section id="home-contact" class="py-16 bg-gray-50 border-t border-gray-100">
-                <div class="max-w-4xl mx-auto px-4 text-center">
-                    <h2 class="text-2xl font-bold text-gray-900 mb-6">¿Tienes sugerencias para el barrio?</h2>
-                    <div class="flex flex-col sm:flex-row justify-center gap-6 text-gray-600">
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-location-dot text-docta-600"></i>
-                            <span>Sede Social: Calle Falsa 123, Docta</span>
+            <!-- Contact & Suggestions Section -->
+            <section id="home-contact" class="py-16 bg-gray-50 border-t border-gray-100 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        
+                        <!-- Contact Info -->
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-900 mb-6">Contáctanos y participa</h2>
+                            <p class="text-gray-600 mb-8">El centro vecinal lo hacemos entre todos. Si tienes una idea, un reclamo o quieres sumarte a colaborar, escríbenos o visítanos.</p>
+                            
+                            <div class="space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-docta-600 flex-shrink-0">
+                                        <i class="fa-solid fa-location-dot text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">Sede Social</h4>
+                                        <p id="display-contact-address" class="text-gray-600">Sede Social: Calle Falsa 123, Docta</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-white shadow-sm flex items-center justify-center text-docta-600 flex-shrink-0">
+                                        <i class="fa-solid fa-envelope text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-gray-900">Correo Electrónico</h4>
+                                        <p id="display-contact-email" class="text-gray-600">contacto@vecinaldocta.com</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-envelope text-docta-600"></i>
-                            <span>contacto@vecinaldocta.com</span>
+
+                        <!-- Suggestions Form -->
+                        <div class="bg-white p-8 rounded-2xl shadow-md border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4"><i class="fa-regular fa-comment-dots text-docta-600 mr-2"></i>Buzón de Sugerencias</h3>
+                            <form id="form-public-suggestion" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre (Opcional)</label>
+                                    <input type="text" id="sugg-name" placeholder="Tu nombre o anónimo" class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Mensaje / Sugerencia</label>
+                                    <textarea id="sugg-message" required rows="4" placeholder="Escribe aquí tu idea, consulta o reclamo..." class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none text-sm resize-none"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-3 px-4 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-xl transition-colors shadow-md">
+                                    Enviar Sugerencia
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -235,10 +275,11 @@
         <div id="view-admin" class="view-section hidden flex-grow bg-gray-100 fade-in">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
                 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <!-- Admin Header -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-900">Panel de Administración</h1>
-                        <p class="text-gray-500 mt-1">Gestiona el contenido y la información del centro vecinal.</p>
+                        <p class="text-gray-500 mt-1">Gestiona el contenido de tu centro vecinal.</p>
                     </div>
                     <div class="flex gap-2">
                         <a href="#home" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shadow-sm">
@@ -250,160 +291,172 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Columna Izquierda: Formularios -->
-                    <div class="lg:col-span-1 space-y-6">
-                        
-                        <!-- Form Novedades -->
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-pen-to-square mr-2 text-docta-600"></i>Publicar Novedad</h2>
-                            <form id="form-news" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Título</label>
-                                    <input type="text" id="news-title" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
-                                </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
-                                    <select id="news-category" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none bg-white">
-                                        <!-- Injected via JS -->
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen (Opcional)</label>
-                                    <input type="url" id="news-image" placeholder="Ej: https://i.ibb.co/foto.jpg" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
-                                    <p class="text-xs text-gray-500 mt-1">Sube la foto gratis a <a href="https://es.imgbb.com/" target="_blank" class="text-docta-600 hover:underline">ImgBB</a> y pega aquí el "Enlace directo".</p>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción Corta (Home)</label>
-                                    <textarea id="news-short" required rows="2" maxlength="150" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all resize-none"></textarea>
-                                </div>
-
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contenido Completo</label>
-                                    <textarea id="news-long" required rows="6" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all"></textarea>
-                                </div>
-
-                                <div class="flex gap-2">
-                                    <button type="submit" id="btn-submit-news" class="w-full py-3 px-4 bg-docta-600 hover:bg-docta-700 text-white font-medium rounded-xl transition-colors shadow-md shadow-docta-500/20">
-                                        Publicar
-                                    </button>
-                                    <button type="button" id="btn-cancel-edit" class="hidden w-1/3 py-3 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-xl transition-colors">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <!-- Form Autoridades -->
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-user-tie mr-2 text-docta-600"></i>Añadir Autoridad</h2>
-                            <form id="form-auth" class="space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
-                                    <input type="text" id="auth-name" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
-                                    <input type="text" id="auth-role" placeholder="Ej: Presidente" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción corta</label>
-                                    <input type="text" id="auth-desc" placeholder="Ej: Vecino desde 2005. Arquitecto." required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Foto</label>
-                                    <input type="url" id="auth-image" placeholder="Ej: https://i.ibb.co/perfil.jpg" class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
-                                </div>
-                                <div class="flex gap-2">
-                                    <button type="submit" id="btn-submit-auth" class="w-full py-2 px-4 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors">
-                                        Guardar
-                                    </button>
-                                    <button type="button" id="btn-cancel-edit-auth" class="hidden w-1/3 py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-lg transition-colors">
-                                        Cancelar
-                                    </button>
-                                </div>
-                            </form>
-                            
-                            <!-- Toggle Visibilidad Autoridades -->
-                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
-                                <div>
-                                    <h3 class="text-sm font-bold text-gray-900">Sección Pública</h3>
-                                    <p class="text-xs text-gray-500">Mostrar autoridades en la web</p>
-                                </div>
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" id="toggle-auth-visibility" class="sr-only peer" checked>
-                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-docta-500"></div>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- Form Categorías -->
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-tags mr-2 text-docta-600"></i>Gestor de Categorías</h2>
-                            
-                            <form id="form-category" class="flex gap-2 mb-4">
-                                <input type="text" id="cat-name" placeholder="Nueva categoría..." required class="flex-grow rounded-lg border-gray-300 border p-2 text-sm focus:ring-2 focus:ring-docta-500 outline-none">
-                                <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white px-4 rounded-lg text-sm font-medium transition-colors">Añadir</button>
-                            </form>
-
-                            <div class="max-h-48 overflow-y-auto pr-1">
-                                <ul id="admin-category-list" class="space-y-2">
-                                    <!-- Injected via JS -->
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Columna Derecha: Listado -->
-                    <div class="lg:col-span-2">
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
-                            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                                <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-list mr-2 text-docta-600"></i>Artículos Publicados</h2>
-                                <span id="admin-news-count" class="bg-gray-200 text-gray-700 py-1 px-3 rounded-full text-xs font-bold">0</span>
-                            </div>
-                            
-                            <div class="p-0 overflow-x-auto flex-grow">
-                                <table class="w-full text-left border-collapse">
-                                    <thead>
-                                        <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-100">
-                                            <th class="p-4 font-medium">Fecha</th>
-                                            <th class="p-4 font-medium">Artículo</th>
-                                            <th class="p-4 font-medium">Categoría</th>
-                                            <th class="p-4 font-medium text-right">Acción</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="admin-news-list" class="divide-y divide-gray-100 text-sm">
-                                        <!-- Injected via JS -->
-                                    </tbody>
-                                </table>
-                                
-                                <!-- Empty state Admin -->
-                                <div id="admin-news-empty" class="hidden text-center py-16">
-                                    <p class="text-gray-500">No hay artículos publicados aún.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tabla Autoridades Admin -->
-                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col mt-8">
-                            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                                <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-users mr-2 text-docta-600"></i>Directiva Actual</h2>
-                            </div>
-                            <div class="p-0 overflow-x-auto">
-                                <table class="w-full text-left border-collapse">
-                                    <tbody id="admin-auth-list" class="divide-y divide-gray-100 text-sm">
-                                        <!-- Injected via JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
+                <!-- Admin Tabs Menu -->
+                <div class="border-b border-gray-200 mb-8 flex overflow-x-auto hide-scrollbar">
+                    <button onclick="switchAdminTab('news')" id="btn-tab-news" class="admin-tab-btn active px-4 py-3 border-b-2 border-docta-600 text-docta-600 font-medium text-sm whitespace-nowrap transition-colors">Notas</button>
+                    <button onclick="switchAdminTab('auth')" id="btn-tab-auth" class="admin-tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm whitespace-nowrap transition-colors">Autoridades</button>
+                    <button onclick="switchAdminTab('sugg')" id="btn-tab-sugg" class="admin-tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm whitespace-nowrap flex items-center gap-2 transition-colors">
+                        Sugerencias
+                        <span id="sugg-badge" class="hidden bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">0</span>
+                    </button>
+                    <button onclick="switchAdminTab('home')" id="btn-tab-home" class="admin-tab-btn px-4 py-3 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium text-sm whitespace-nowrap transition-colors">Textos Home</button>
                 </div>
+
+                <!-- ================= TAB: NOTAS ================= -->
+                <div id="tab-news" class="admin-tab-content block fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-1 space-y-6">
+                            <!-- Form Novedades -->
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                                <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-pen-to-square mr-2 text-docta-600"></i>Publicar Novedad</h2>
+                                <form id="form-news" class="space-y-4">
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Título</label><input type="text" id="news-title" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label><select id="news-category" required class="w-full rounded-lg border-gray-300 border p-2.5 focus:ring-2 focus:ring-docta-500 outline-none bg-white text-sm"></select></div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen (Opcional)</label>
+                                        <input type="url" id="news-image" placeholder="Ej: https://i.ibb.co/foto.jpg" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 outline-none">
+                                        <p class="text-xs text-gray-500 mt-1">Sube la foto gratis a <a href="https://es.imgbb.com/" target="_blank" class="text-docta-600 hover:underline">ImgBB</a> y pega aquí el enlace directo.</p>
+                                    </div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Descripción Corta</label><textarea id="news-short" required rows="2" maxlength="150" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 outline-none resize-none"></textarea></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Contenido</label><textarea id="news-long" required rows="6" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 outline-none"></textarea></div>
+                                    <div class="flex gap-2">
+                                        <button type="submit" id="btn-submit-news" class="w-full py-2 px-4 bg-docta-600 hover:bg-docta-700 text-white font-medium rounded-xl transition-colors">Publicar</button>
+                                        <button type="button" id="btn-cancel-edit" class="hidden w-1/3 py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-xl transition-colors">Cancelar</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Form Categorías -->
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                                <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-tags mr-2 text-docta-600"></i>Gestor de Categorías</h2>
+                                <form id="form-category" class="flex gap-2 mb-4">
+                                    <input type="text" id="cat-name" placeholder="Nueva categoría..." required class="flex-grow rounded-lg border-gray-300 border p-2 text-sm focus:ring-2 focus:ring-docta-500 outline-none">
+                                    <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white px-4 rounded-lg text-sm font-medium transition-colors">Añadir</button>
+                                </form>
+                                <ul id="admin-category-list" class="space-y-2 max-h-48 overflow-y-auto pr-1"></ul>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col h-full">
+                                <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                                    <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-list mr-2 text-docta-600"></i>Artículos Publicados</h2>
+                                </div>
+                                <div class="p-0 overflow-x-auto">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-100">
+                                                <th class="p-4 font-medium">Fecha</th><th class="p-4 font-medium">Artículo</th><th class="p-4 font-medium text-right">Acción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="admin-news-list" class="divide-y divide-gray-100 text-sm"></tbody>
+                                    </table>
+                                    <div id="admin-news-empty" class="hidden text-center py-16"><p class="text-gray-500">No hay artículos publicados aún.</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB: AUTORIDADES ================= -->
+                <div id="tab-auth" class="admin-tab-content hidden fade-in">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-1">
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                                <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-user-tie mr-2 text-docta-600"></i>Añadir Autoridad</h2>
+                                <form id="form-auth" class="space-y-4">
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Nombre</label><input type="text" id="auth-name" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Cargo</label><input type="text" id="auth-role" placeholder="Ej: Presidente" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label><input type="text" id="auth-desc" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm"></div>
+                                    <div><label class="block text-sm font-medium text-gray-700 mb-1">URL Foto</label><input type="url" id="auth-image" class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm"></div>
+                                    <div class="flex gap-2">
+                                        <button type="submit" id="btn-submit-auth" class="w-full py-2 px-4 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-lg">Guardar</button>
+                                        <button type="button" id="btn-cancel-edit-auth" class="hidden w-1/3 py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-lg">Cancelar</button>
+                                    </div>
+                                </form>
+                                
+                                <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                                    <div><h3 class="text-sm font-bold text-gray-900">Sección Pública</h3><p class="text-xs text-gray-500">Mostrar panel en la web</p></div>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" id="toggle-auth-visibility" class="sr-only peer" checked>
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-docta-500"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-2">
+                            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col">
+                                <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                                    <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-users mr-2 text-docta-600"></i>Directiva Actual</h2>
+                                </div>
+                                <div class="p-0 overflow-x-auto">
+                                    <table class="w-full text-left border-collapse"><tbody id="admin-auth-list" class="divide-y divide-gray-100 text-sm"></tbody></table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB: SUGERENCIAS ================= -->
+                <div id="tab-sugg" class="admin-tab-content hidden fade-in">
+                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                        <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                            <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-inbox mr-2 text-docta-600"></i>Sugerencias de Vecinos</h2>
+                        </div>
+                        <div class="p-0 overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wider border-b border-gray-100">
+                                        <th class="p-4 font-medium w-1/4">Fecha / Nombre</th>
+                                        <th class="p-4 font-medium w-2/4">Mensaje</th>
+                                        <th class="p-4 font-medium text-right w-1/4">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="admin-sugg-list" class="divide-y divide-gray-100 text-sm">
+                                    <!-- Injected via JS -->
+                                </tbody>
+                            </table>
+                            <div id="admin-sugg-empty" class="hidden text-center py-16">
+                                <i class="fa-regular fa-face-smile text-3xl text-gray-300 mb-2 block"></i>
+                                <p class="text-gray-500">No hay sugerencias por el momento.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= TAB: CONFIG HOME ================= -->
+                <div id="tab-home" class="admin-tab-content hidden fade-in">
+                    <div class="max-w-2xl bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                        <h2 class="text-lg font-bold text-gray-900 mb-6 border-b pb-2"><i class="fa-solid fa-gear mr-2 text-docta-600"></i>Textos de la Portada</h2>
+                        <form id="form-home-texts" class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Título Principal (Hero)</label>
+                                <input type="text" id="config-hero-title" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Subtítulo Pequeño</label>
+                                <input type="text" id="config-hero-sub" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Texto de Bienvenida</label>
+                                <textarea id="config-hero-desc" required rows="3" class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm resize-none"></textarea>
+                            </div>
+                            
+                            <hr class="border-gray-100">
+                            
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Dirección de Sede (Contacto)</label>
+                                <input type="text" id="config-contact-addr" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">Correo Electrónico Oficial</label>
+                                <input type="email" id="config-contact-email" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                            </div>
+                            <button type="submit" class="w-full py-3 px-4 bg-gray-900 hover:bg-gray-800 text-white font-medium rounded-xl transition-colors shadow-md mt-4">
+                                Guardar Cambios
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -450,7 +503,7 @@
     <!-- SCRIPT DE LA APLICACIÓN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, setDoc, deleteDoc, updateDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         // ==========================================
@@ -475,31 +528,20 @@
         // ==========================================
         
         const defaultCategories = ['Obras Públicas', 'Seguridad', 'Eventos', 'Comunidad', 'Salud'];
-        const defaultNews = [
-            {
-                id: '1',
-                title: 'Avanzan las obras en la plaza central',
-                shortDesc: 'Se han instalado los nuevos juegos infantiles y la iluminación LED. La inauguración será el próximo domingo.',
-                longContent: 'Estimados vecinos:\n\nNos alegra informar que la fase 2 de remodelación de nuestra plaza principal ha concluido exitosamente. Gracias al esfuerzo conjunto, ahora contamos con:\n\n- Iluminación LED de bajo consumo en todo el perímetro.\n- Nuevos juegos infantiles homologados y seguros.\n- Bancos de descanso reparados y pintados.\n\nLos invitamos a la reinauguración este domingo a las 16:00 hs. ¡Habrá mate cocido y facturas para compartir en familia!',
-                image: 'https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80',
-                category: 'Obras Públicas',
-                date: new Date().toISOString()
-            },
-            {
-                id: '2',
-                title: 'Reunión de seguridad vecinal',
-                shortDesc: 'Resumen de los puntos tratados con la comisaría local para mejorar el patrullaje nocturno.',
-                longContent: 'El pasado martes nos reunimos con el comisario de la zona para plantear nuestras inquietudes respecto a la seguridad nocturna en el sector sur del barrio.\n\nAcuerdos logrados:\n1. Aumento de la frecuencia de patrullaje entre las 22:00 y las 06:00 hs.\n2. Creación de un nuevo grupo de WhatsApp de alarmas comunitarias, exclusivo para la calle San Martín y aledañas.\n\nRecordamos a todos la importancia de mantener la iluminación del frente de sus hogares encendida durante la noche.',
-                image: 'https://images.unsplash.com/photo-1555921015-5532091f6026?auto=format&fit=crop&w=800&q=80',
-                category: 'Seguridad',
-                date: new Date(Date.now() - 86400000 * 2).toISOString()
-            }
-        ];
+        const defaultHomeTexts = {
+            heroSubtitle: "Bienvenido a tu barrio",
+            heroTitle: "Centro Vecinal DOCTA",
+            heroDesc: "Construyendo juntos un espacio más seguro, limpio y conectado. Entérate de las últimas novedades, obras y eventos de nuestra comunidad.",
+            contactAddress: "Sede Social: Calle Falsa 123, Docta",
+            contactEmail: "contacto@vecinaldocta.com"
+        };
 
         let state = {
             news: [],
             categories: [],
             authorities: [],
+            suggestions: [],
+            homeTexts: defaultHomeTexts,
             showAuthorities: true,
             currentFilter: 'Todas',
             editingId: null,
@@ -508,11 +550,31 @@
 
         let currentUser = null;
         let authInitialized = false;
+        let unsubSuggestions = null;
 
         // Escuchar estado de autenticación
         onAuthStateChanged(auth, (user) => {
             currentUser = user;
             authInitialized = true;
+            
+            // Si el usuario es admin, comenzamos a escuchar las sugerencias privadas
+            if(user) {
+                unsubSuggestions = onSnapshot(collection(db, 'suggestions'), (snapshot) => {
+                    state.suggestions = [];
+                    let unreadCount = 0;
+                    snapshot.forEach(docSnap => {
+                        const data = docSnap.data();
+                        state.suggestions.push(data);
+                        if(!data.read) unreadCount++;
+                    });
+                    renderSuggestions();
+                    updateBadge(unreadCount);
+                }, (error) => console.error("Error cargando sugerencias: ", error));
+            } else {
+                if(unsubSuggestions) { unsubSuggestions(); unsubSuggestions = null; }
+                state.suggestions = [];
+            }
+            
             handleRouting();
         });
 
@@ -520,16 +582,12 @@
             // Escuchar Categorías
             onSnapshot(collection(db, 'categories'), (snapshot) => {
                 state.categories = [];
-                snapshot.forEach(docSnap => {
-                    state.categories.push(docSnap.id);
-                });
-                
-                // Intentar cargar datos por defecto si está vacío (fallará silenciosamente si no es admin debido a reglas de seguridad)
+                snapshot.forEach(docSnap => state.categories.push(docSnap.id));
                 if (snapshot.empty) {
-                    defaultCategories.forEach(cat => setDoc(doc(db, 'categories', cat), { createdAt: Date.now() }).catch(() => console.warn("Permisos insuficientes para poblar categorías. Inicia sesión como admin.")));
+                    defaultCategories.forEach(cat => setDoc(doc(db, 'categories', cat), { createdAt: Date.now() }).catch(()=>{}));
                 }
-                renderHome();
-                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+                renderHomeNews();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdminForms();
             }, (error) => console.error("Error cargando categorías: ", error));
 
             // Escuchar Ajustes Globales (Visibilidad Autoridades)
@@ -537,8 +595,7 @@
                 if (docSnap.exists()) {
                     state.showAuthorities = docSnap.data().showAuthorities;
                 } else {
-                    // Intentar inicializar configuración (fallará silenciosamente si no es admin)
-                    setDoc(doc(db, 'settings', 'global'), { showAuthorities: true }).catch(() => console.warn("Permisos insuficientes para guardar ajustes."));
+                    setDoc(doc(db, 'settings', 'global'), { showAuthorities: true }).catch(()=>{});
                 }
                 
                 const toggle = document.getElementById('toggle-auth-visibility');
@@ -549,42 +606,44 @@
                 const sectionAuth = document.getElementById('home-autoridades');
                 
                 if (state.showAuthorities) {
-                    navDesktop?.classList.remove('hidden');
-                    navMobile?.classList.remove('hidden');
-                    sectionAuth?.classList.remove('hidden');
+                    navDesktop?.classList.remove('hidden'); navMobile?.classList.remove('hidden'); sectionAuth?.classList.remove('hidden');
                 } else {
-                    navDesktop?.classList.add('hidden');
-                    navMobile?.classList.add('hidden');
-                    sectionAuth?.classList.add('hidden');
+                    navDesktop?.classList.add('hidden'); navMobile?.classList.add('hidden'); sectionAuth?.classList.add('hidden');
                 }
             }, (error) => console.error("Error cargando ajustes: ", error));
+
+            // Escuchar Textos Home
+            onSnapshot(doc(db, 'settings', 'homeTexts'), (docSnap) => {
+                if (docSnap.exists()) {
+                    state.homeTexts = { ...defaultHomeTexts, ...docSnap.data() };
+                } else {
+                    setDoc(doc(db, 'settings', 'homeTexts'), defaultHomeTexts).catch(()=>{});
+                }
+                applyHomeTexts();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) fillAdminHomeTexts();
+            }, (error) => console.error("Error cargando textos: ", error));
 
             // Escuchar Autoridades
             onSnapshot(collection(db, 'authorities'), (snapshot) => {
                 state.authorities = [];
                 snapshot.forEach(docSnap => state.authorities.push(docSnap.data()));
                 renderAuthorities();
-                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdminAuth();
             }, (error) => console.error("Error cargando autoridades: ", error));
 
             // Escuchar Noticias
             onSnapshot(collection(db, 'news'), (snapshot) => {
                 state.news = [];
                 snapshot.forEach(docSnap => state.news.push(docSnap.data()));
-                
-                // Intentar cargar datos por defecto si está vacío (fallará silenciosamente si no es admin)
-                if (snapshot.empty) {
-                    defaultNews.forEach(item => setDoc(doc(db, 'news', item.id), item).catch(() => console.warn("Permisos insuficientes para poblar noticias. Inicia sesión como admin.")));
-                }
-                renderHome();
-                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+                renderHomeNews();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdminNews();
                 const hash = window.location.hash;
                 if (hash.startsWith('#article-')) renderArticle(hash.replace('#article-', ''));
             }, (error) => console.error("Error cargando noticias: ", error));
         }
 
         // ==========================================
-        // 3. ROUTING LOGIC
+        // 3. ROUTING & TABS LOGIC
         // ==========================================
         function handleRouting() {
             if (!authInitialized) return;
@@ -596,7 +655,11 @@
             if (hash === '#admin') {
                 if (!currentUser) return window.location.hash = '#login';
                 document.getElementById('view-admin').classList.remove('hidden');
-                renderAdmin();
+                renderAdminForms();
+                renderAdminNews();
+                renderAdminAuth();
+                fillAdminHomeTexts();
+                if(state.suggestions.length > 0) renderSuggestions();
             } else if (hash === '#login') {
                 if (currentUser) return window.location.hash = '#admin';
                 document.getElementById('view-login').classList.remove('hidden');
@@ -606,7 +669,7 @@
                 renderArticle(id);
             } else {
                 document.getElementById('view-home').classList.remove('hidden');
-                renderHome();
+                renderHomeNews();
                 if(hash === '#home-news' || hash === '#home-contact' || hash === '#home-autoridades') {
                     setTimeout(() => {
                         const el = document.getElementById(hash.substring(1));
@@ -616,25 +679,50 @@
             }
         }
 
+        window.switchAdminTab = (tabId) => {
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.classList.remove('active', 'border-docta-600', 'text-docta-600');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+            document.querySelectorAll('.admin-tab-content').forEach(content => content.classList.add('hidden'));
+            
+            const btn = document.getElementById(`btn-tab-${tabId}`);
+            if(btn) {
+                btn.classList.remove('border-transparent', 'text-gray-500');
+                btn.classList.add('active', 'border-docta-600', 'text-docta-600');
+            }
+            
+            const content = document.getElementById(`tab-${tabId}`);
+            if(content) content.classList.remove('hidden');
+        };
+
         window.addEventListener('hashchange', handleRouting);
 
         // ==========================================
         // 4. UI RENDER FUNCTIONS
         // ==========================================
-        
-        const formatDate = (dateString) => new Date(dateString).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+        const formatDate = (dateString) => new Date(dateString).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute:'2-digit' });
         const escapeHTML = (str) => str.replace(/[&<>'"]/g, tag => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag));
         const formatTextToHTML = (text) => escapeHTML(text).replace(/\n\n/g, '</p><p class="mt-4">').replace(/\n/g, '<br>');
 
-        function renderHome() {
+        function applyHomeTexts() {
+            document.getElementById('display-hero-subtitle').innerText = state.homeTexts.heroSubtitle;
+            document.getElementById('display-hero-title').innerHTML = escapeHTML(state.homeTexts.heroTitle).replace('DOCTA', '<span class="text-docta-600">DOCTA</span>');
+            document.getElementById('display-hero-desc').innerText = state.homeTexts.heroDesc;
+            document.getElementById('display-contact-address').innerText = state.homeTexts.contactAddress;
+            document.getElementById('display-contact-email').innerText = state.homeTexts.contactEmail;
+        }
+
+        function renderHomeNews() {
             const filterContainer = document.getElementById('public-category-filters');
+            if(!filterContainer) return;
             filterContainer.innerHTML = '';
             
             const allBtn = document.createElement('button');
             allBtn.type = 'button';
             allBtn.className = `px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${state.currentFilter === 'Todas' ? 'bg-docta-600 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} relative z-20 cursor-pointer`;
             allBtn.innerText = 'Todas';
-            allBtn.onclick = () => { state.currentFilter = 'Todas'; renderHome(); };
+            allBtn.onclick = () => { state.currentFilter = 'Todas'; renderHomeNews(); };
             filterContainer.appendChild(allBtn);
 
             state.categories.forEach(cat => {
@@ -642,7 +730,7 @@
                 btn.type = 'button';
                 btn.className = `px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${state.currentFilter === cat ? 'bg-docta-600 text-white shadow-md' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'} relative z-20 cursor-pointer`;
                 btn.innerText = cat;
-                btn.onclick = () => { state.currentFilter = cat; renderHome(); };
+                btn.onclick = () => { state.currentFilter = cat; renderHomeNews(); };
                 filterContainer.appendChild(btn);
             });
 
@@ -654,34 +742,23 @@
             const filteredNews = state.currentFilter === 'Todas' ? sortedNews : sortedNews.filter(n => n.category === state.currentFilter);
 
             if (filteredNews.length === 0) {
-                grid.classList.add('hidden');
-                emptyState.classList.remove('hidden');
+                grid.classList.add('hidden'); emptyState.classList.remove('hidden');
             } else {
-                grid.classList.remove('hidden');
-                emptyState.classList.add('hidden');
-                
+                grid.classList.remove('hidden'); emptyState.classList.add('hidden');
                 filteredNews.forEach(item => {
                     const imgUrl = item.image || `https://ui-avatars.com/api/?name=${item.category}&background=0d9488&color=fff&size=512&font-size=0.1&length=3`;
                     const card = document.createElement('article');
                     card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden group relative';
                     card.innerHTML = `
                         <div class="relative h-48 overflow-hidden bg-gray-100 z-10">
-                            <a href="#article-${item.id}" class="block w-full h-full">
-                                <img src="${escapeHTML(imgUrl)}" alt="Imagen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'">
-                            </a>
-                            <div class="absolute top-4 left-4 pointer-events-none">
-                                <span class="bg-white/90 backdrop-blur-sm text-docta-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">${escapeHTML(item.category)}</span>
-                            </div>
+                            <a href="#article-${item.id}" class="block w-full h-full"><img src="${escapeHTML(imgUrl)}" alt="Imagen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'"></a>
+                            <div class="absolute top-4 left-4 pointer-events-none"><span class="bg-white/90 backdrop-blur-sm text-docta-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">${escapeHTML(item.category)}</span></div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-xs text-gray-400 mb-2 flex items-center gap-1"><i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}</div>
-                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-docta-600 transition-colors">
-                                <a href="#article-${item.id}" class="focus:outline-none">${escapeHTML(item.title)}<span class="absolute inset-0" aria-hidden="true"></span></a>
-                            </h3>
+                            <div class="text-xs text-gray-400 mb-2 flex items-center gap-1"><i class="fa-regular fa-calendar"></i> ${formatDate(item.date).split(',')[0]}</div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-docta-600 transition-colors"><a href="#article-${item.id}" class="focus:outline-none">${escapeHTML(item.title)}<span class="absolute inset-0" aria-hidden="true"></span></a></h3>
                             <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${escapeHTML(item.shortDesc)}</p>
-                            <a href="#article-${item.id}" class="mt-auto pt-4 border-t border-gray-50 flex items-center text-sm font-medium text-docta-600 hover:text-docta-700 relative z-10">
-                                Leer más <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                            </a>
+                            <a href="#article-${item.id}" class="mt-auto pt-4 border-t border-gray-50 flex items-center text-sm font-medium text-docta-600 hover:text-docta-700 relative z-10">Leer más <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i></a>
                         </div>
                     `;
                     grid.appendChild(card);
@@ -709,11 +786,7 @@
                         <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="${escapeHTML(imgUrl)}" alt="${escapeHTML(auth.name)}">
                         <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
                     </div>
-                    <div class="mt-6">
-                        <h3 class="text-xl font-bold text-gray-900">${escapeHTML(auth.name)}</h3>
-                        <p class="text-docta-600 font-medium mt-1">${escapeHTML(auth.role)}</p>
-                        <p class="text-sm text-gray-500 mt-2">${escapeHTML(auth.desc)}</p>
-                    </div>
+                    <div class="mt-6"><h3 class="text-xl font-bold text-gray-900">${escapeHTML(auth.name)}</h3><p class="text-docta-600 font-medium mt-1">${escapeHTML(auth.role)}</p><p class="text-sm text-gray-500 mt-2">${escapeHTML(auth.desc)}</p></div>
                 `;
                 grid.appendChild(div);
             });
@@ -732,7 +805,7 @@
             container.innerHTML = `
                 <div class="mb-6 flex items-center gap-3">
                     <span class="bg-docta-50 text-docta-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-docta-100">${escapeHTML(article.category)}</span>
-                    <span class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-1"></i> ${formatDate(article.date)}</span>
+                    <span class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-1"></i> ${formatDate(article.date).split(',')[0]}</span>
                 </div>
                 <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">${escapeHTML(article.title)}</h1>
                 <div class="rounded-2xl overflow-hidden mb-10 shadow-md bg-gray-100 h-64 sm:h-80 md:h-96">
@@ -749,47 +822,49 @@
             `;
         }
 
-        function renderAdmin() {
+        // ==========================================
+        // 4.1 ADMIN RENDER FUNCTIONS
+        // ==========================================
+        function renderAdminForms() {
             const select = document.getElementById('news-category');
-            select.innerHTML = '';
-            state.categories.forEach(cat => {
-                const opt = document.createElement('option');
-                opt.value = cat;
-                opt.innerText = cat;
-                select.appendChild(opt);
-            });
+            if(select) {
+                select.innerHTML = '';
+                state.categories.forEach(cat => {
+                    const opt = document.createElement('option');
+                    opt.value = cat; opt.innerText = cat; select.appendChild(opt);
+                });
+            }
 
             const catList = document.getElementById('admin-category-list');
-            catList.innerHTML = '';
-            state.categories.forEach((cat, index) => {
-                const li = document.createElement('li');
-                li.className = 'flex justify-between items-center p-2 bg-gray-50 rounded-lg text-sm border border-gray-100';
-                li.innerHTML = `<span class="font-medium text-gray-700">${escapeHTML(cat)}</span><button onclick="deleteCategory(${index})" class="text-red-400 hover:text-red-600 transition-colors p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>`;
-                catList.appendChild(li);
-            });
+            if(catList) {
+                catList.innerHTML = '';
+                state.categories.forEach((cat, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'flex justify-between items-center p-2 bg-gray-50 rounded-lg text-sm border border-gray-100';
+                    li.innerHTML = `<span class="font-medium text-gray-700">${escapeHTML(cat)}</span><button onclick="deleteCategory(${index})" class="text-red-400 hover:text-red-600 transition-colors p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>`;
+                    catList.appendChild(li);
+                });
+            }
+        }
 
+        function renderAdminNews() {
             const newsList = document.getElementById('admin-news-list');
             const emptyState = document.getElementById('admin-news-empty');
-            const count = document.getElementById('admin-news-count');
+            if(!newsList) return;
             newsList.innerHTML = '';
-            count.innerText = state.news.length;
             
             const sortedNews = [...state.news].sort((a, b) => new Date(b.date) - new Date(a.date));
             if (sortedNews.length === 0) {
-                newsList.parentElement.classList.add('hidden');
-                emptyState.classList.remove('hidden');
+                newsList.parentElement.classList.add('hidden'); emptyState.classList.remove('hidden');
             } else {
-                newsList.parentElement.classList.remove('hidden');
-                emptyState.classList.add('hidden');
+                newsList.parentElement.classList.remove('hidden'); emptyState.classList.add('hidden');
                 sortedNews.forEach(item => {
                     const tr = document.createElement('tr');
                     tr.className = 'hover:bg-gray-50 transition-colors group';
                     tr.innerHTML = `
                         <td class="p-4 whitespace-nowrap text-gray-500">${new Date(item.date).toLocaleDateString('es-ES')}</td>
                         <td class="p-4"><div class="font-medium text-gray-900 truncate max-w-[200px] md:max-w-xs">${escapeHTML(item.title)}</div></td>
-                        <td class="p-4 whitespace-nowrap"><span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">${escapeHTML(item.category)}</span></td>
                         <td class="p-4 text-right whitespace-nowrap">
-                            <a href="#article-${item.id}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-docta-600 hover:bg-docta-50 transition-colors mr-1" title="Ver"><i class="fa-regular fa-eye"></i></a>
                             <button onclick="editNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
                             <button onclick="deleteNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
                         </td>
@@ -797,27 +872,78 @@
                     newsList.appendChild(tr);
                 });
             }
+        }
 
+        function renderAdminAuth() {
             const authList = document.getElementById('admin-auth-list');
-            if(authList) {
-                authList.innerHTML = '';
-                const sortedAuth = [...state.authorities].sort((a, b) => a.createdAt - b.createdAt);
-                if (sortedAuth.length === 0) {
-                    authList.innerHTML = `<tr><td class="p-4 text-center text-gray-500">No hay autoridades registradas.</td></tr>`;
-                } else {
-                    sortedAuth.forEach(auth => {
-                        const tr = document.createElement('tr');
-                        tr.className = 'hover:bg-gray-50 transition-colors group';
-                        tr.innerHTML = `
-                            <td class="p-4"><div class="font-medium text-gray-900">${escapeHTML(auth.name)}</div><div class="text-xs text-gray-500">${escapeHTML(auth.role)}</div></td>
-                            <td class="p-4 text-right whitespace-nowrap">
-                                <button onclick="editAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
-                                <button onclick="deleteAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
-                            </td>
-                        `;
-                        authList.appendChild(tr);
-                    });
-                }
+            if(!authList) return;
+            authList.innerHTML = '';
+            const sortedAuth = [...state.authorities].sort((a, b) => a.createdAt - b.createdAt);
+            if (sortedAuth.length === 0) {
+                authList.innerHTML = `<tr><td class="p-4 text-center text-gray-500">No hay autoridades registradas.</td></tr>`;
+            } else {
+                sortedAuth.forEach(auth => {
+                    const tr = document.createElement('tr');
+                    tr.className = 'hover:bg-gray-50 transition-colors group';
+                    tr.innerHTML = `
+                        <td class="p-4"><div class="font-medium text-gray-900">${escapeHTML(auth.name)}</div><div class="text-xs text-gray-500">${escapeHTML(auth.role)}</div></td>
+                        <td class="p-4 text-right whitespace-nowrap">
+                            <button onclick="editAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                        </td>
+                    `;
+                    authList.appendChild(tr);
+                });
+            }
+        }
+
+        function fillAdminHomeTexts() {
+            document.getElementById('config-hero-title').value = state.homeTexts.heroTitle;
+            document.getElementById('config-hero-sub').value = state.homeTexts.heroSubtitle;
+            document.getElementById('config-hero-desc').value = state.homeTexts.heroDesc;
+            document.getElementById('config-contact-addr').value = state.homeTexts.contactAddress;
+            document.getElementById('config-contact-email').value = state.homeTexts.contactEmail;
+        }
+
+        function updateBadge(count) {
+            const badge = document.getElementById('sugg-badge');
+            if(count > 0) {
+                badge.innerText = count;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function renderSuggestions() {
+            const list = document.getElementById('admin-sugg-list');
+            const empty = document.getElementById('admin-sugg-empty');
+            if(!list) return;
+            list.innerHTML = '';
+            
+            const sortedSugg = [...state.suggestions].sort((a, b) => b.date - a.date);
+            if(sortedSugg.length === 0) {
+                list.parentElement.classList.add('hidden'); empty.classList.remove('hidden');
+            } else {
+                list.parentElement.classList.remove('hidden'); empty.classList.add('hidden');
+                sortedSugg.forEach(sugg => {
+                    const tr = document.createElement('tr');
+                    tr.className = `hover:bg-gray-50 transition-colors group ${sugg.read ? 'bg-white' : 'bg-orange-50/50'}`;
+                    tr.innerHTML = `
+                        <td class="p-4">
+                            <div class="font-bold ${sugg.read ? 'text-gray-700' : 'text-gray-900'}">${escapeHTML(sugg.name)}</div>
+                            <div class="text-xs text-gray-500">${formatDate(sugg.date)}</div>
+                        </td>
+                        <td class="p-4">
+                            <p class="text-sm ${sugg.read ? 'text-gray-600' : 'text-gray-800 font-medium'}">${formatTextToHTML(sugg.message)}</p>
+                        </td>
+                        <td class="p-4 text-right whitespace-nowrap">
+                            ${!sugg.read ? `<button onclick="markSuggRead('${sugg.id}')" class="inline-flex items-center justify-center px-3 py-1.5 rounded-lg text-white bg-docta-600 hover:bg-docta-700 transition-colors mr-1 text-xs font-bold" title="Marcar como leída"><i class="fa-solid fa-check mr-1"></i> Visto</button>` : ''}
+                            <button onclick="deleteSugg('${sugg.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                        </td>
+                    `;
+                    list.appendChild(tr);
+                });
             }
         }
 
@@ -825,11 +951,62 @@
         // 5. CRUD ACTIONS
         // ==========================================
         
+        // --- SUGERENCIAS (PUBLIC) ---
+        document.getElementById('form-public-suggestion').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nameInput = document.getElementById('sugg-name').value.trim();
+            const msgInput = document.getElementById('sugg-message').value.trim();
+            const newId = Date.now().toString();
+            const newSugg = {
+                id: newId,
+                name: nameInput || 'Anónimo',
+                message: msgInput,
+                date: Date.now(),
+                read: false
+            };
+            try {
+                await setDoc(doc(db, 'suggestions', newId), newSugg);
+                window.showToast('¡Gracias por tu sugerencia! Ha sido enviada a la directiva.', 'success');
+                e.target.reset();
+            } catch (error) {
+                console.error(error);
+                window.showToast('Error al enviar. Intenta de nuevo más tarde.', 'error');
+            }
+        });
+
+        // --- SUGERENCIAS (ADMIN) ---
+        window.markSuggRead = async (id) => {
+            try { await updateDoc(doc(db, 'suggestions', id), { read: true }); }
+            catch (e) { window.showToast('Error', 'error'); }
+        };
+
+        window.deleteSugg = async (id) => {
+            if(confirm('¿Eliminar este mensaje permanentemente?')) {
+                try { await deleteDoc(doc(db, 'suggestions', id)); window.showToast('Mensaje eliminado', 'info'); }
+                catch (e) { window.showToast('Error al eliminar', 'error'); }
+            }
+        };
+
+        // --- HOME TEXTS (ADMIN) ---
+        document.getElementById('form-home-texts').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newData = {
+                heroTitle: document.getElementById('config-hero-title').value.trim(),
+                heroSubtitle: document.getElementById('config-hero-sub').value.trim(),
+                heroDesc: document.getElementById('config-hero-desc').value.trim(),
+                contactAddress: document.getElementById('config-contact-addr').value.trim(),
+                contactEmail: document.getElementById('config-contact-email').value.trim()
+            };
+            try {
+                await setDoc(doc(db, 'settings', 'homeTexts'), newData);
+                window.showToast('Textos actualizados con éxito', 'success');
+            } catch (e) { window.showToast('Error al guardar', 'error'); }
+        });
+
         // --- NEWS ---
         document.getElementById('form-news').addEventListener('submit', async (e) => {
             e.preventDefault();
             if(state.categories.length === 0) return window.showToast('Crea al menos una categoría.', 'error');
-
             const title = document.getElementById('news-title').value.trim();
             const category = document.getElementById('news-category').value;
             const image = document.getElementById('news-image').value.trim();
@@ -841,14 +1018,12 @@
                     const oldArticle = state.news.find(n => n.id === state.editingId);
                     const updatedItem = { ...oldArticle, title, category, image, shortDesc, longContent };
                     await setDoc(doc(db, 'news', state.editingId), updatedItem);
-                    window.showToast('Artículo actualizado', 'success');
-                    window.cancelEdit();
+                    window.showToast('Artículo actualizado', 'success'); window.cancelEdit();
                 } else {
                     const newId = Date.now().toString();
                     const newItem = { id: newId, title, category, image, shortDesc, longContent, date: new Date().toISOString() };
                     await setDoc(doc(db, 'news', newId), newItem);
-                    window.showToast('Artículo publicado', 'success');
-                    e.target.reset();
+                    window.showToast('Artículo publicado', 'success'); e.target.reset();
                 }
             } catch (error) { window.showToast('Error al guardar', 'error'); }
         });
@@ -857,21 +1032,16 @@
             const article = state.news.find(n => n.id === id);
             if (!article) return;
             state.editingId = id;
-            document.getElementById('news-title').value = article.title;
-            document.getElementById('news-category').value = article.category;
-            document.getElementById('news-image').value = article.image || '';
-            document.getElementById('news-short').value = article.shortDesc;
+            document.getElementById('news-title').value = article.title; document.getElementById('news-category').value = article.category;
+            document.getElementById('news-image').value = article.image || ''; document.getElementById('news-short').value = article.shortDesc;
             document.getElementById('news-long').value = article.longContent;
-            document.getElementById('btn-submit-news').innerText = 'Actualizar Artículo';
-            document.getElementById('btn-cancel-edit').classList.remove('hidden');
+            document.getElementById('btn-submit-news').innerText = 'Actualizar Artículo'; document.getElementById('btn-cancel-edit').classList.remove('hidden');
             document.getElementById('form-news').scrollIntoView({ behavior: 'smooth' });
         };
 
         window.cancelEdit = () => {
-            state.editingId = null;
-            document.getElementById('form-news').reset();
-            document.getElementById('btn-submit-news').innerText = 'Publicar Artículo';
-            document.getElementById('btn-cancel-edit').classList.add('hidden');
+            state.editingId = null; document.getElementById('form-news').reset();
+            document.getElementById('btn-submit-news').innerText = 'Publicar Artículo'; document.getElementById('btn-cancel-edit').classList.add('hidden');
         };
         document.getElementById('btn-cancel-edit').addEventListener('click', window.cancelEdit);
 
@@ -885,24 +1055,17 @@
         // --- AUTHORITIES ---
         document.getElementById('form-auth').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const name = document.getElementById('auth-name').value.trim();
-            const role = document.getElementById('auth-role').value.trim();
-            const desc = document.getElementById('auth-desc').value.trim();
-            const image = document.getElementById('auth-image').value.trim();
-
+            const name = document.getElementById('auth-name').value.trim(); const role = document.getElementById('auth-role').value.trim();
+            const desc = document.getElementById('auth-desc').value.trim(); const image = document.getElementById('auth-image').value.trim();
             try {
                 if (state.editingAuthId) {
                     const oldAuth = state.authorities.find(a => a.id === state.editingAuthId);
-                    const updatedItem = { ...oldAuth, name, role, desc, image };
-                    await setDoc(doc(db, 'authorities', state.editingAuthId), updatedItem);
-                    window.showToast('Autoridad actualizada', 'success');
-                    window.cancelEditAuth();
+                    await setDoc(doc(db, 'authorities', state.editingAuthId), { ...oldAuth, name, role, desc, image });
+                    window.showToast('Autoridad actualizada', 'success'); window.cancelEditAuth();
                 } else {
                     const newId = Date.now().toString();
-                    const newItem = { id: newId, name, role, desc, image, createdAt: Date.now() };
-                    await setDoc(doc(db, 'authorities', newId), newItem);
-                    window.showToast('Autoridad guardada', 'success');
-                    e.target.reset();
+                    await setDoc(doc(db, 'authorities', newId), { id: newId, name, role, desc, image, createdAt: Date.now() });
+                    window.showToast('Autoridad guardada', 'success'); e.target.reset();
                 }
             } catch (error) { window.showToast('Error al guardar', 'error'); }
         });
@@ -911,20 +1074,15 @@
             const auth = state.authorities.find(a => a.id === id);
             if(!auth) return;
             state.editingAuthId = id;
-            document.getElementById('auth-name').value = auth.name;
-            document.getElementById('auth-role').value = auth.role;
-            document.getElementById('auth-desc').value = auth.desc;
-            document.getElementById('auth-image').value = auth.image || '';
-            document.getElementById('btn-submit-auth').innerText = 'Actualizar';
-            document.getElementById('btn-cancel-edit-auth').classList.remove('hidden');
+            document.getElementById('auth-name').value = auth.name; document.getElementById('auth-role').value = auth.role;
+            document.getElementById('auth-desc').value = auth.desc; document.getElementById('auth-image').value = auth.image || '';
+            document.getElementById('btn-submit-auth').innerText = 'Actualizar'; document.getElementById('btn-cancel-edit-auth').classList.remove('hidden');
             document.getElementById('form-auth').scrollIntoView({behavior: 'smooth'});
         };
 
         window.cancelEditAuth = () => {
-            state.editingAuthId = null;
-            document.getElementById('form-auth').reset();
-            document.getElementById('btn-submit-auth').innerText = 'Guardar';
-            document.getElementById('btn-cancel-edit-auth').classList.add('hidden');
+            state.editingAuthId = null; document.getElementById('form-auth').reset();
+            document.getElementById('btn-submit-auth').innerText = 'Guardar'; document.getElementById('btn-cancel-edit-auth').classList.add('hidden');
         };
         document.getElementById('btn-cancel-edit-auth').addEventListener('click', window.cancelEditAuth);
 
@@ -935,23 +1093,16 @@
             }
         };
 
-        // Toggle Visibilidad Autoridades
         document.getElementById('toggle-auth-visibility').addEventListener('change', async (e) => {
             const isVisible = e.target.checked;
-            try {
-                await setDoc(doc(db, 'settings', 'global'), { showAuthorities: isVisible });
-                window.showToast(isVisible ? 'Sección visible' : 'Sección oculta', 'info');
-            } catch(error) {
-                window.showToast('Error de conexión', 'error');
-                e.target.checked = !isVisible;
-            }
+            try { await setDoc(doc(db, 'settings', 'global'), { showAuthorities: isVisible }, {merge: true}); window.showToast(isVisible ? 'Visible' : 'Oculto', 'info'); } 
+            catch(error) { window.showToast('Error', 'error'); e.target.checked = !isVisible; }
         });
 
         // --- CATEGORIES ---
         document.getElementById('form-category').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const input = document.getElementById('cat-name');
-            const newCat = input.value.trim();
+            const input = document.getElementById('cat-name'); const newCat = input.value.trim();
             if(newCat && !state.categories.includes(newCat)) {
                 try { await setDoc(doc(db, 'categories', newCat), { createdAt: Date.now() }); input.value = ''; window.showToast('Agregada', 'success'); } 
                 catch (error) { window.showToast('Error', 'error'); }
@@ -972,13 +1123,10 @@
         // ==========================================
         document.getElementById('form-login').addEventListener('submit', async (e) => {
             e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
+            const email = document.getElementById('login-email').value; const password = document.getElementById('login-password').value;
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                window.showToast('Sesión iniciada', 'success');
-                document.getElementById('form-login').reset();
-                window.location.hash = '#admin';
+                window.showToast('Sesión iniciada', 'success'); document.getElementById('form-login').reset(); window.location.hash = '#admin';
             } catch (error) { window.showToast('Credenciales incorrectas', 'error'); }
         });
 
