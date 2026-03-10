@@ -72,7 +72,7 @@
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#home" class="text-gray-600 hover:text-docta-600 font-medium transition-colors">Inicio</a>
                     <a href="#home-news" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-news').scrollIntoView(), 100)">Novedades</a>
-                    <a href="#home-autoridades" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
+                    <a href="#home-autoridades" id="nav-desktop-autoridades" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
                     <a href="#home-contact" class="text-gray-600 hover:text-docta-600 font-medium transition-colors" onclick="setTimeout(()=>document.getElementById('home-contact').scrollIntoView(), 100)">Contacto</a>
                     <a href="#admin" class="px-4 py-2 text-sm font-semibold text-docta-600 bg-docta-50 rounded-full hover:bg-docta-100 transition-colors">
                         <i class="fa-solid fa-lock mr-2"></i>Admin
@@ -93,7 +93,7 @@
             <div class="px-4 pt-2 pb-6 space-y-2">
                 <a href="#home" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg">Inicio</a>
                 <a href="#home-news" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Novedades</a>
-                <a href="#home-autoridades" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden'); setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
+                <a href="#home-autoridades" id="nav-mobile-autoridades" class="block px-3 py-3 text-base font-medium text-gray-800 hover:bg-docta-50 hover:text-docta-600 rounded-lg" onclick="document.getElementById('mobile-menu').classList.add('hidden'); setTimeout(()=>document.getElementById('home-autoridades').scrollIntoView(), 100)">Autoridades</a>
                 <a href="#admin" class="block px-3 py-3 text-base font-medium text-docta-600 bg-docta-50 rounded-lg mt-4">
                     <i class="fa-solid fa-user-shield mr-2"></i>Panel de Administración
                 </a>
@@ -159,7 +159,7 @@
             </section>
             
             <!-- Autoridades Section -->
-            <section id="home-autoridades" class="py-16 bg-white border-t border-gray-100">
+            <section id="home-autoridades" class="py-16 bg-white border-t border-gray-100 transition-all duration-300">
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="text-center max-w-3xl mx-auto mb-16">
                         <span class="text-docta-600 font-semibold tracking-wider uppercase text-sm mb-2 block">Comisión Directiva</span>
@@ -167,58 +167,8 @@
                         <p class="mt-4 text-lg text-gray-500">Conoce a los vecinos que trabajan día a día, ad honorem, para mejorar nuestra comunidad y representar los intereses del barrio.</p>
                     </div>
                     
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                        <!-- Presidente -->
-                        <div class="text-center group">
-                            <div class="relative inline-block">
-                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80" alt="Presidente">
-                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
-                            </div>
-                            <div class="mt-6">
-                                <h3 class="text-xl font-bold text-gray-900">Carlos Mendoza</h3>
-                                <p class="text-docta-600 font-medium mt-1">Presidente</p>
-                                <p class="text-sm text-gray-500 mt-2">Vecino desde 2005. Arquitecto.</p>
-                            </div>
-                        </div>
-
-                        <!-- Secretaria -->
-                        <div class="text-center group">
-                            <div class="relative inline-block">
-                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80" alt="Secretaria">
-                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
-                            </div>
-                            <div class="mt-6">
-                                <h3 class="text-xl font-bold text-gray-900">Laura Ríos</h3>
-                                <p class="text-docta-600 font-medium mt-1">Secretaria General</p>
-                                <p class="text-sm text-gray-500 mt-2">Vecina desde 2012. Docente.</p>
-                            </div>
-                        </div>
-
-                        <!-- Tesorero -->
-                        <div class="text-center group">
-                            <div class="relative inline-block">
-                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Tesorero">
-                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
-                            </div>
-                            <div class="mt-6">
-                                <h3 class="text-xl font-bold text-gray-900">Martín Benítez</h3>
-                                <p class="text-docta-600 font-medium mt-1">Tesorero</p>
-                                <p class="text-sm text-gray-500 mt-2">Vecino desde 2010. Contador público.</p>
-                            </div>
-                        </div>
-
-                        <!-- Vocal -->
-                        <div class="text-center group">
-                            <div class="relative inline-block">
-                                <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Vocal">
-                                <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
-                            </div>
-                            <div class="mt-6">
-                                <h3 class="text-xl font-bold text-gray-900">Silvia Romero</h3>
-                                <p class="text-docta-600 font-medium mt-1">Vocal Titular</p>
-                                <p class="text-sm text-gray-500 mt-2">Vecina desde 1998. Comerciante.</p>
-                            </div>
-                        </div>
+                    <div id="public-autoridades-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <!-- Injected via JS -->
                     </div>
                 </div>
             </section>
@@ -288,7 +238,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
                     <div>
                         <h1 class="text-3xl font-bold text-gray-900">Panel de Administración</h1>
-                        <p class="text-gray-500 mt-1">Gestiona las novedades y categorías del centro vecinal.</p>
+                        <p class="text-gray-500 mt-1">Gestiona el contenido y la información del centro vecinal.</p>
                     </div>
                     <div class="flex gap-2">
                         <a href="#home" class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors shadow-sm">
@@ -323,8 +273,8 @@
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Imagen (Opcional)</label>
-                                    <input type="url" id="news-image" placeholder="https://ejemplo.com/foto.jpg" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
-                                    <p class="text-xs text-gray-400 mt-1">Si se deja en blanco, se usará una imagen por defecto.</p>
+                                    <input type="url" id="news-image" placeholder="Ej: https://i.ibb.co/foto.jpg" class="w-full rounded-lg border-gray-300 border p-2.5 text-sm focus:ring-2 focus:ring-docta-500 focus:border-docta-500 outline-none transition-all">
+                                    <p class="text-xs text-gray-500 mt-1">Sube la foto gratis a <a href="https://es.imgbb.com/" target="_blank" class="text-docta-600 hover:underline">ImgBB</a> y pega aquí el "Enlace directo".</p>
                                 </div>
 
                                 <div>
@@ -339,13 +289,56 @@
 
                                 <div class="flex gap-2">
                                     <button type="submit" id="btn-submit-news" class="w-full py-3 px-4 bg-docta-600 hover:bg-docta-700 text-white font-medium rounded-xl transition-colors shadow-md shadow-docta-500/20">
-                                        Publicar Artículo
+                                        Publicar
                                     </button>
                                     <button type="button" id="btn-cancel-edit" class="hidden w-1/3 py-3 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium rounded-xl transition-colors">
                                         Cancelar
                                     </button>
                                 </div>
                             </form>
+                        </div>
+
+                        <!-- Form Autoridades -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                            <h2 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2"><i class="fa-solid fa-user-tie mr-2 text-docta-600"></i>Añadir Autoridad</h2>
+                            <form id="form-auth" class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
+                                    <input type="text" id="auth-name" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+                                    <input type="text" id="auth-role" placeholder="Ej: Presidente" required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción corta</label>
+                                    <input type="text" id="auth-desc" placeholder="Ej: Vecino desde 2005. Arquitecto." required class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">URL de la Foto</label>
+                                    <input type="url" id="auth-image" placeholder="Ej: https://i.ibb.co/perfil.jpg" class="w-full rounded-lg border-gray-300 border p-2 focus:ring-2 focus:ring-docta-500 outline-none text-sm">
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="submit" id="btn-submit-auth" class="w-full py-2 px-4 bg-gray-800 hover:bg-gray-900 text-white text-sm font-medium rounded-lg transition-colors">
+                                        Guardar
+                                    </button>
+                                    <button type="button" id="btn-cancel-edit-auth" class="hidden w-1/3 py-2 px-4 bg-gray-200 hover:bg-gray-300 text-gray-800 text-sm font-medium rounded-lg transition-colors">
+                                        Cancelar
+                                    </button>
+                                </div>
+                            </form>
+                            
+                            <!-- Toggle Visibilidad Autoridades -->
+                            <div class="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-sm font-bold text-gray-900">Sección Pública</h3>
+                                    <p class="text-xs text-gray-500">Mostrar autoridades en la web</p>
+                                </div>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" id="toggle-auth-visibility" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-docta-500"></div>
+                                </label>
+                            </div>
                         </div>
 
                         <!-- Form Categorías -->
@@ -392,6 +385,20 @@
                                 <div id="admin-news-empty" class="hidden text-center py-16">
                                     <p class="text-gray-500">No hay artículos publicados aún.</p>
                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabla Autoridades Admin -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col mt-8">
+                            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                                <h2 class="text-lg font-bold text-gray-900"><i class="fa-solid fa-users mr-2 text-docta-600"></i>Directiva Actual</h2>
+                            </div>
+                            <div class="p-0 overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <tbody id="admin-auth-list" class="divide-y divide-gray-100 text-sm">
+                                        <!-- Injected via JS -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -443,7 +450,7 @@
     <!-- SCRIPT DE LA APLICACIÓN -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, setDoc, deleteDoc, onSnapshot, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
 
         // ==========================================
@@ -467,7 +474,6 @@
         // 2. DATA LAYER (State)
         // ==========================================
         
-        // Datos por defecto para el MVP si está vacío
         const defaultCategories = ['Obras Públicas', 'Seguridad', 'Eventos', 'Comunidad', 'Salud'];
         const defaultNews = [
             {
@@ -487,50 +493,17 @@
                 image: 'https://images.unsplash.com/photo-1555921015-5532091f6026?auto=format&fit=crop&w=800&q=80',
                 category: 'Seguridad',
                 date: new Date(Date.now() - 86400000 * 2).toISOString()
-            },
-            {
-                id: '3',
-                title: 'Gran Feria de Emprendedores Locales',
-                shortDesc: 'Este sábado ven a apoyar a los emprendedores del barrio. Habrá artesanías, comida y música en vivo.',
-                longContent: '¡Se viene la primera Feria Docta del año!\n\nMás de 40 vecinos estarán exponiendo sus productos artesanales, gastronomía casera, indumentaria y plantas. Es una excelente oportunidad para apoyar la economía local y pasar un lindo momento en comunidad.\n\nCronograma:\n- 10:00 hs: Apertura de stands.\n- 13:00 hs: Almuerzo comunitario (food trucks disponibles).\n- 17:00 hs: Show musical a cargo de la banda del barrio "Los Doctos".\n\n¡Los esperamos a todos en el polideportivo!',
-                image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=800&q=80',
-                category: 'Eventos',
-                date: new Date(Date.now() - 86400000 * 5).toISOString()
-            },
-            {
-                id: '4',
-                title: 'Campaña de Vacunación Antigripal',
-                shortDesc: 'El centro de salud móvil visitará el barrio la próxima semana para vacunar a grupos de riesgo.',
-                longContent: 'Información importante para nuestra salud comunitaria:\n\nEl Ministerio de Salud ha confirmado que el vacunatorio móvil estará instalado frente a la sede del Centro Vecinal los días jueves y viernes de la próxima semana, de 09:00 a 14:00 hs.\n\nSe aplicarán dosis de la vacuna antigripal de forma gratuita a:\n- Mayores de 65 años.\n- Mujeres embarazadas.\n- Personas con enfermedades crónicas (presentar certificado).\n- Niños de 6 a 24 meses.\n\nPor favor, asistir con DNI y carnet de vacunación.',
-                image: 'https://images.unsplash.com/photo-1633526543814-9718c8922b7a?auto=format&fit=crop&w=800&q=80',
-                category: 'Salud',
-                date: new Date(Date.now() - 86400000 * 7).toISOString()
-            },
-            {
-                id: '5',
-                title: 'Nuevos horarios para recolección de poda',
-                shortDesc: 'La municipalidad ha actualizado el cronograma mensual para la recolección de restos de poda y escombros.',
-                longContent: 'Atención vecinos,\n\nPara mantener nuestro barrio limpio y ordenado, compartimos el nuevo esquema de recolección de poda dispuesto por la Municipalidad:\n\n- Zona Norte (calles de la 1 a la 10): 1er y 3er lunes del mes.\n- Zona Sur (calles de la 11 a la 20): 2do y 4to lunes del mes.\n\nRecuerden que los restos deben estar embolsados o atados (máximo 1 metro cúbico) y no deben obstruir la vereda ni la calle peatonal. Evitemos multas y cuidemos entre todos el espacio público.',
-                image: 'https://images.unsplash.com/photo-1597063124765-654db389bdde?auto=format&fit=crop&w=800&q=80',
-                category: 'Comunidad',
-                date: new Date(Date.now() - 86400000 * 12).toISOString()
-            },
-            {
-                id: '6',
-                title: 'Taller gratuito de compostaje',
-                shortDesc: 'Aprende a reducir tus residuos orgánicos y crear abono para tus plantas en este taller teórico-práctico.',
-                longContent: 'Seguimos impulsando un barrio más ecológico.\n\nEstán abiertas las inscripciones para el "Taller de Compostaje Domiciliario", dictado por especialistas en medioambiente. \n\n¿Qué aprenderemos?\n- Diferencia entre residuos húmedos y secos.\n- Cómo armar una compostera casera sin gastar dinero.\n- Mantenimiento y solución de problemas comunes (olores, insectos).\n\nEl taller consta de dos encuentros presenciales. Los cupos son limitados. Para anotarse, acercarse a la secretaría del centro vecinal de 18:00 a 20:00 hs.',
-                image: 'https://images.unsplash.com/photo-1558583082-409143c794ca?auto=format&fit=crop&w=800&q=80',
-                category: 'Comunidad',
-                date: new Date(Date.now() - 86400000 * 15).toISOString()
             }
         ];
 
         let state = {
             news: [],
             categories: [],
+            authorities: [],
+            showAuthorities: true,
             currentFilter: 'Todas',
-            editingId: null
+            editingId: null,
+            editingAuthId: null
         };
 
         let currentUser = null;
@@ -544,84 +517,96 @@
         });
 
         function initDB() {
-            // Escuchar Categorías en Tiempo Real
+            // Escuchar Categorías
             onSnapshot(collection(db, 'categories'), (snapshot) => {
                 state.categories = [];
                 snapshot.forEach(docSnap => {
                     state.categories.push(docSnap.id);
                 });
                 
-                // Si la base de datos está vacía, la poblamos con los datos por defecto
+                // Intentar cargar datos por defecto si está vacío (fallará silenciosamente si no es admin debido a reglas de seguridad)
                 if (snapshot.empty) {
-                    defaultCategories.forEach(cat => {
-                        setDoc(doc(db, 'categories', cat), { createdAt: Date.now() });
-                    });
+                    defaultCategories.forEach(cat => setDoc(doc(db, 'categories', cat), { createdAt: Date.now() }).catch(() => console.warn("Permisos insuficientes para poblar categorías. Inicia sesión como admin.")));
                 }
-                
                 renderHome();
                 if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
-            });
+            }, (error) => console.error("Error cargando categorías: ", error));
 
-            // Escuchar Noticias en Tiempo Real
+            // Escuchar Ajustes Globales (Visibilidad Autoridades)
+            onSnapshot(doc(db, 'settings', 'global'), (docSnap) => {
+                if (docSnap.exists()) {
+                    state.showAuthorities = docSnap.data().showAuthorities;
+                } else {
+                    // Intentar inicializar configuración (fallará silenciosamente si no es admin)
+                    setDoc(doc(db, 'settings', 'global'), { showAuthorities: true }).catch(() => console.warn("Permisos insuficientes para guardar ajustes."));
+                }
+                
+                const toggle = document.getElementById('toggle-auth-visibility');
+                if (toggle) toggle.checked = state.showAuthorities;
+                
+                const navDesktop = document.getElementById('nav-desktop-autoridades');
+                const navMobile = document.getElementById('nav-mobile-autoridades');
+                const sectionAuth = document.getElementById('home-autoridades');
+                
+                if (state.showAuthorities) {
+                    navDesktop?.classList.remove('hidden');
+                    navMobile?.classList.remove('hidden');
+                    sectionAuth?.classList.remove('hidden');
+                } else {
+                    navDesktop?.classList.add('hidden');
+                    navMobile?.classList.add('hidden');
+                    sectionAuth?.classList.add('hidden');
+                }
+            }, (error) => console.error("Error cargando ajustes: ", error));
+
+            // Escuchar Autoridades
+            onSnapshot(collection(db, 'authorities'), (snapshot) => {
+                state.authorities = [];
+                snapshot.forEach(docSnap => state.authorities.push(docSnap.data()));
+                renderAuthorities();
+                if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
+            }, (error) => console.error("Error cargando autoridades: ", error));
+
+            // Escuchar Noticias
             onSnapshot(collection(db, 'news'), (snapshot) => {
                 state.news = [];
-                snapshot.forEach(docSnap => {
-                    state.news.push(docSnap.data());
-                });
+                snapshot.forEach(docSnap => state.news.push(docSnap.data()));
                 
-                // Si la base de datos está vacía, la poblamos con los datos por defecto
+                // Intentar cargar datos por defecto si está vacío (fallará silenciosamente si no es admin)
                 if (snapshot.empty) {
-                    defaultNews.forEach(item => {
-                        setDoc(doc(db, 'news', item.id), item);
-                    });
+                    defaultNews.forEach(item => setDoc(doc(db, 'news', item.id), item).catch(() => console.warn("Permisos insuficientes para poblar noticias. Inicia sesión como admin.")));
                 }
-
                 renderHome();
                 if (!document.getElementById('view-admin').classList.contains('hidden')) renderAdmin();
-                
-                // Actualizar la vista de artículo si estamos leyendo uno
                 const hash = window.location.hash;
-                if (hash.startsWith('#article-')) {
-                    renderArticle(hash.replace('#article-', ''));
-                }
-            });
+                if (hash.startsWith('#article-')) renderArticle(hash.replace('#article-', ''));
+            }, (error) => console.error("Error cargando noticias: ", error));
         }
 
         // ==========================================
         // 3. ROUTING LOGIC
         // ==========================================
         function handleRouting() {
-            if (!authInitialized) return; // Esperar a que Firebase verifique sesión
+            if (!authInitialized) return;
 
             const hash = window.location.hash;
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            
-            // Scroll to top on view change
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
             if (hash === '#admin') {
-                if (!currentUser) {
-                    window.location.hash = '#login';
-                    return;
-                }
+                if (!currentUser) return window.location.hash = '#login';
                 document.getElementById('view-admin').classList.remove('hidden');
                 renderAdmin();
             } else if (hash === '#login') {
-                if (currentUser) {
-                    window.location.hash = '#admin';
-                    return;
-                }
+                if (currentUser) return window.location.hash = '#admin';
                 document.getElementById('view-login').classList.remove('hidden');
             } else if (hash.startsWith('#article-')) {
                 const id = hash.replace('#article-', '');
                 document.getElementById('view-article').classList.remove('hidden');
                 renderArticle(id);
             } else {
-                // Default Home
                 document.getElementById('view-home').classList.remove('hidden');
                 renderHome();
-                
-                // Si el hash es #home-news, scrollear ahí después de renderizar
                 if(hash === '#home-news' || hash === '#home-contact' || hash === '#home-autoridades') {
                     setTimeout(() => {
                         const el = document.getElementById(hash.substring(1));
@@ -637,32 +622,11 @@
         // 4. UI RENDER FUNCTIONS
         // ==========================================
         
-        // Utils
-        const formatDate = (dateString) => {
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('es-ES', options);
-        };
+        const formatDate = (dateString) => new Date(dateString).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+        const escapeHTML = (str) => str.replace(/[&<>'"]/g, tag => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'}[tag] || tag));
+        const formatTextToHTML = (text) => escapeHTML(text).replace(/\n\n/g, '</p><p class="mt-4">').replace(/\n/g, '<br>');
 
-        const escapeHTML = (str) => {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    "'": '&#39;',
-                    '"': '&quot;'
-                }[tag] || tag)
-            );
-        };
-
-        const formatTextToHTML = (text) => {
-            // Convierte saltos de línea en <br> y respeta párrafos rudimentarios
-            return escapeHTML(text).replace(/\n\n/g, '</p><p class="mt-4">').replace(/\n/g, '<br>');
-        };
-
-        // Render Home Novedades
         function renderHome() {
-            // Render Categories Filters
             const filterContainer = document.getElementById('public-category-filters');
             filterContainer.innerHTML = '';
             
@@ -682,16 +646,12 @@
                 filterContainer.appendChild(btn);
             });
 
-            // Render News Grid
             const grid = document.getElementById('public-news-grid');
             const emptyState = document.getElementById('public-news-empty');
             grid.innerHTML = '';
             
-            // Sort by date desc
             const sortedNews = [...state.news].sort((a, b) => new Date(b.date) - new Date(a.date));
-            const filteredNews = state.currentFilter === 'Todas' 
-                ? sortedNews 
-                : sortedNews.filter(n => n.category === state.currentFilter);
+            const filteredNews = state.currentFilter === 'Todas' ? sortedNews : sortedNews.filter(n => n.category === state.currentFilter);
 
             if (filteredNews.length === 0) {
                 grid.classList.add('hidden');
@@ -701,36 +661,24 @@
                 emptyState.classList.add('hidden');
                 
                 filteredNews.forEach(item => {
-                    // Fallback imagen
                     const imgUrl = item.image || `https://ui-avatars.com/api/?name=${item.category}&background=0d9488&color=fff&size=512&font-size=0.1&length=3`;
-
                     const card = document.createElement('article');
-                    // CORRECCIÓN: Se añade 'relative' a la tarjeta para contener el enlace
                     card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col overflow-hidden group relative';
                     card.innerHTML = `
                         <div class="relative h-48 overflow-hidden bg-gray-100 z-10">
                             <a href="#article-${item.id}" class="block w-full h-full">
-                                <img src="${escapeHTML(imgUrl)}" alt="Imagen de novedad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'">
+                                <img src="${escapeHTML(imgUrl)}" alt="Imagen" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'">
                             </a>
                             <div class="absolute top-4 left-4 pointer-events-none">
-                                <span class="bg-white/90 backdrop-blur-sm text-docta-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
-                                    ${escapeHTML(item.category)}
-                                </span>
+                                <span class="bg-white/90 backdrop-blur-sm text-docta-700 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">${escapeHTML(item.category)}</span>
                             </div>
                         </div>
                         <div class="p-6 flex flex-col flex-grow">
-                            <div class="text-xs text-gray-400 mb-2 flex items-center gap-1">
-                                <i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}
-                            </div>
+                            <div class="text-xs text-gray-400 mb-2 flex items-center gap-1"><i class="fa-regular fa-calendar"></i> ${formatDate(item.date)}</div>
                             <h3 class="text-xl font-bold text-gray-900 mb-2 leading-tight group-hover:text-docta-600 transition-colors">
-                                <a href="#article-${item.id}" class="focus:outline-none">
-                                    ${escapeHTML(item.title)}
-                                    <span class="absolute inset-0" aria-hidden="true"></span>
-                                </a>
+                                <a href="#article-${item.id}" class="focus:outline-none">${escapeHTML(item.title)}<span class="absolute inset-0" aria-hidden="true"></span></a>
                             </h3>
-                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">
-                                ${escapeHTML(item.shortDesc)}
-                            </p>
+                            <p class="text-gray-600 text-sm mb-4 line-clamp-3 flex-grow">${escapeHTML(item.shortDesc)}</p>
                             <a href="#article-${item.id}" class="mt-auto pt-4 border-t border-gray-50 flex items-center text-sm font-medium text-docta-600 hover:text-docta-700 relative z-10">
                                 Leer más <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                             </a>
@@ -741,62 +689,67 @@
             }
         }
 
-        // Render Article Detail
+        function renderAuthorities() {
+            const grid = document.getElementById('public-autoridades-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            
+            if (state.authorities.length === 0) {
+                grid.innerHTML = `<p class="col-span-full text-center text-gray-500 py-10">La directiva se está actualizando.</p>`;
+                return;
+            }
+
+            const sortedAuth = [...state.authorities].sort((a, b) => a.createdAt - b.createdAt);
+            sortedAuth.forEach(auth => {
+                const imgUrl = auth.image || `https://ui-avatars.com/api/?name=${auth.name}&background=14b8a6&color=fff&size=256`;
+                const div = document.createElement('div');
+                div.className = 'text-center group fade-in';
+                div.innerHTML = `
+                    <div class="relative inline-block">
+                        <img class="mx-auto h-40 w-40 rounded-full object-cover shadow-lg border-4 border-white group-hover:border-docta-100 transition-colors duration-300" src="${escapeHTML(imgUrl)}" alt="${escapeHTML(auth.name)}">
+                        <div class="absolute inset-0 rounded-full shadow-inner pointer-events-none"></div>
+                    </div>
+                    <div class="mt-6">
+                        <h3 class="text-xl font-bold text-gray-900">${escapeHTML(auth.name)}</h3>
+                        <p class="text-docta-600 font-medium mt-1">${escapeHTML(auth.role)}</p>
+                        <p class="text-sm text-gray-500 mt-2">${escapeHTML(auth.desc)}</p>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
         function renderArticle(id) {
             const article = state.news.find(n => n.id === id);
             const container = document.getElementById('article-container');
             
             if (!article) {
-                container.innerHTML = `
-                    <div class="text-center py-20">
-                        <i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-4 block"></i>
-                        <h2 class="text-2xl font-bold text-gray-900">Artículo no encontrado</h2>
-                        <p class="mt-2 text-gray-500">Es posible que haya sido eliminado.</p>
-                    </div>`;
+                container.innerHTML = `<div class="text-center py-20"><i class="fa-regular fa-face-frown text-4xl text-gray-400 mb-4 block"></i><h2 class="text-2xl font-bold text-gray-900">Artículo no encontrado</h2><p class="mt-2 text-gray-500">Es posible que haya sido eliminado.</p></div>`;
                 return;
             }
 
             const imgUrl = article.image || `https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80`;
-
             container.innerHTML = `
                 <div class="mb-6 flex items-center gap-3">
-                    <span class="bg-docta-50 text-docta-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-docta-100">
-                        ${escapeHTML(article.category)}
-                    </span>
+                    <span class="bg-docta-50 text-docta-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide border border-docta-100">${escapeHTML(article.category)}</span>
                     <span class="text-sm text-gray-500"><i class="fa-regular fa-calendar mr-1"></i> ${formatDate(article.date)}</span>
                 </div>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">
-                    ${escapeHTML(article.title)}
-                </h1>
-                
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-8">${escapeHTML(article.title)}</h1>
                 <div class="rounded-2xl overflow-hidden mb-10 shadow-md bg-gray-100 h-64 sm:h-80 md:h-96">
                     <img src="${escapeHTML(imgUrl)}" alt="Portada" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'">
                 </div>
-
-                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed text-lg pb-10">
-                    <p>${formatTextToHTML(article.longContent)}</p>
-                </div>
-                
+                <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed text-lg pb-10"><p>${formatTextToHTML(article.longContent)}</p></div>
                 <div class="border-t border-gray-200 pt-8 mt-8 flex justify-between items-center">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div>
-                            <p class="text-sm font-medium text-gray-900">Comisión Directiva</p>
-                            <p class="text-xs text-gray-500">Centro Vecinal Docta</p>
-                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-500"><i class="fa-solid fa-user"></i></div>
+                        <div><p class="text-sm font-medium text-gray-900">Comisión Directiva</p><p class="text-xs text-gray-500">Centro Vecinal Docta</p></div>
                     </div>
-                    <button onclick="navigator.clipboard.writeText(window.location.href); window.showToast('Enlace copiado al portapapeles', 'success')" class="text-gray-500 hover:text-docta-600 bg-gray-50 hover:bg-docta-50 p-2 rounded-full transition-colors tooltip" title="Compartir">
-                        <i class="fa-solid fa-share-nodes"></i>
-                    </button>
+                    <button onclick="navigator.clipboard.writeText(window.location.href); window.showToast('Enlace copiado al portapapeles', 'success')" class="text-gray-500 hover:text-docta-600 bg-gray-50 hover:bg-docta-50 p-2 rounded-full transition-colors tooltip" title="Compartir"><i class="fa-solid fa-share-nodes"></i></button>
                 </div>
             `;
         }
 
-        // Render Admin Dashboard
         function renderAdmin() {
-            // Update Select Categories in Form
             const select = document.getElementById('news-category');
             select.innerHTML = '';
             state.categories.forEach(cat => {
@@ -806,63 +759,65 @@
                 select.appendChild(opt);
             });
 
-            // Update Categories List
             const catList = document.getElementById('admin-category-list');
             catList.innerHTML = '';
             state.categories.forEach((cat, index) => {
                 const li = document.createElement('li');
                 li.className = 'flex justify-between items-center p-2 bg-gray-50 rounded-lg text-sm border border-gray-100';
-                li.innerHTML = `
-                    <span class="font-medium text-gray-700">${escapeHTML(cat)}</span>
-                    <button onclick="deleteCategory(${index})" class="text-red-400 hover:text-red-600 transition-colors p-1" title="Eliminar">
-                        <i class="fa-solid fa-trash-can"></i>
-                    </button>
-                `;
+                li.innerHTML = `<span class="font-medium text-gray-700">${escapeHTML(cat)}</span><button onclick="deleteCategory(${index})" class="text-red-400 hover:text-red-600 transition-colors p-1" title="Eliminar"><i class="fa-solid fa-trash-can"></i></button>`;
                 catList.appendChild(li);
             });
 
-            // Update News Table
             const newsList = document.getElementById('admin-news-list');
             const emptyState = document.getElementById('admin-news-empty');
             const count = document.getElementById('admin-news-count');
-            
             newsList.innerHTML = '';
             count.innerText = state.news.length;
             
             const sortedNews = [...state.news].sort((a, b) => new Date(b.date) - new Date(a.date));
-
             if (sortedNews.length === 0) {
                 newsList.parentElement.classList.add('hidden');
                 emptyState.classList.remove('hidden');
             } else {
                 newsList.parentElement.classList.remove('hidden');
                 emptyState.classList.add('hidden');
-                
                 sortedNews.forEach(item => {
                     const tr = document.createElement('tr');
                     tr.className = 'hover:bg-gray-50 transition-colors group';
                     tr.innerHTML = `
                         <td class="p-4 whitespace-nowrap text-gray-500">${new Date(item.date).toLocaleDateString('es-ES')}</td>
-                        <td class="p-4">
-                            <div class="font-medium text-gray-900 truncate max-w-[200px] md:max-w-xs">${escapeHTML(item.title)}</div>
-                        </td>
-                        <td class="p-4 whitespace-nowrap">
-                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">${escapeHTML(item.category)}</span>
-                        </td>
+                        <td class="p-4"><div class="font-medium text-gray-900 truncate max-w-[200px] md:max-w-xs">${escapeHTML(item.title)}</div></td>
+                        <td class="p-4 whitespace-nowrap"><span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-medium">${escapeHTML(item.category)}</span></td>
                         <td class="p-4 text-right whitespace-nowrap">
-                            <a href="#article-${item.id}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-docta-600 hover:bg-docta-50 transition-colors mr-1" title="Ver">
-                                <i class="fa-regular fa-eye"></i>
-                            </a>
-                            <button onclick="editNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar">
-                                <i class="fa-solid fa-pen"></i>
-                            </button>
-                            <button onclick="deleteNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
+                            <a href="#article-${item.id}" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-docta-600 hover:bg-docta-50 transition-colors mr-1" title="Ver"><i class="fa-regular fa-eye"></i></a>
+                            <button onclick="editNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                            <button onclick="deleteNews('${item.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
                         </td>
                     `;
                     newsList.appendChild(tr);
                 });
+            }
+
+            const authList = document.getElementById('admin-auth-list');
+            if(authList) {
+                authList.innerHTML = '';
+                const sortedAuth = [...state.authorities].sort((a, b) => a.createdAt - b.createdAt);
+                if (sortedAuth.length === 0) {
+                    authList.innerHTML = `<tr><td class="p-4 text-center text-gray-500">No hay autoridades registradas.</td></tr>`;
+                } else {
+                    sortedAuth.forEach(auth => {
+                        const tr = document.createElement('tr');
+                        tr.className = 'hover:bg-gray-50 transition-colors group';
+                        tr.innerHTML = `
+                            <td class="p-4"><div class="font-medium text-gray-900">${escapeHTML(auth.name)}</div><div class="text-xs text-gray-500">${escapeHTML(auth.role)}</div></td>
+                            <td class="p-4 text-right whitespace-nowrap">
+                                <button onclick="editAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-blue-600 hover:bg-blue-50 transition-colors mr-1" title="Editar"><i class="fa-solid fa-pen"></i></button>
+                                <button onclick="deleteAuth('${auth.id}')" class="inline-flex items-center justify-center w-8 h-8 rounded-lg text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors" title="Eliminar"><i class="fa-regular fa-trash-can"></i></button>
+                            </td>
+                        `;
+                        authList.appendChild(tr);
+                    });
+                }
             }
         }
 
@@ -870,14 +825,10 @@
         // 5. CRUD ACTIONS
         // ==========================================
         
-        // News
+        // --- NEWS ---
         document.getElementById('form-news').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            if(state.categories.length === 0) {
-                window.showToast('Primero debes crear al menos una categoría.', 'error');
-                return;
-            }
+            if(state.categories.length === 0) return window.showToast('Crea al menos una categoría.', 'error');
 
             const title = document.getElementById('news-title').value.trim();
             const category = document.getElementById('news-category').value;
@@ -887,109 +838,132 @@
 
             try {
                 if (state.editingId) {
-                    // Modo Edición
                     const oldArticle = state.news.find(n => n.id === state.editingId);
-                    const updatedItem = {
-                        ...oldArticle,
-                        title, category, image, shortDesc, longContent
-                    };
+                    const updatedItem = { ...oldArticle, title, category, image, shortDesc, longContent };
                     await setDoc(doc(db, 'news', state.editingId), updatedItem);
-                    window.showToast('Artículo actualizado con éxito', 'success');
+                    window.showToast('Artículo actualizado', 'success');
                     window.cancelEdit();
                 } else {
-                    // Modo Creación
                     const newId = Date.now().toString();
-                    const newItem = {
-                        id: newId,
-                        title, category, image, shortDesc, longContent,
-                        date: new Date().toISOString()
-                    };
+                    const newItem = { id: newId, title, category, image, shortDesc, longContent, date: new Date().toISOString() };
                     await setDoc(doc(db, 'news', newId), newItem);
-                    window.showToast('Artículo publicado con éxito', 'success');
+                    window.showToast('Artículo publicado', 'success');
                     e.target.reset();
                 }
-            } catch (error) {
-                console.error("Error saving document: ", error);
-                window.showToast('Error al guardar en la base de datos', 'error');
-            }
+            } catch (error) { window.showToast('Error al guardar', 'error'); }
         });
 
-        // Cargar datos para editar
         window.editNews = (id) => {
             const article = state.news.find(n => n.id === id);
             if (!article) return;
-
             state.editingId = id;
             document.getElementById('news-title').value = article.title;
             document.getElementById('news-category').value = article.category;
             document.getElementById('news-image').value = article.image || '';
             document.getElementById('news-short').value = article.shortDesc;
             document.getElementById('news-long').value = article.longContent;
-
             document.getElementById('btn-submit-news').innerText = 'Actualizar Artículo';
             document.getElementById('btn-cancel-edit').classList.remove('hidden');
-            
-            // Scrollear suavemente hasta el formulario
             document.getElementById('form-news').scrollIntoView({ behavior: 'smooth' });
         };
 
-        // Cancelar edición
         window.cancelEdit = () => {
             state.editingId = null;
             document.getElementById('form-news').reset();
             document.getElementById('btn-submit-news').innerText = 'Publicar Artículo';
             document.getElementById('btn-cancel-edit').classList.add('hidden');
         };
-
         document.getElementById('btn-cancel-edit').addEventListener('click', window.cancelEdit);
 
         window.deleteNews = async (id) => {
-            if(confirm('¿Estás seguro de que deseas eliminar este artículo? Esta acción no se puede deshacer.')) {
-                try {
-                    await deleteDoc(doc(db, 'news', id));
-                    window.showToast('Artículo eliminado', 'info');
-                } catch (error) {
-                    console.error("Error deleting document: ", error);
-                    window.showToast('Error al eliminar', 'error');
-                }
+            if(confirm('¿Eliminar este artículo?')) {
+                try { await deleteDoc(doc(db, 'news', id)); window.showToast('Eliminado', 'info'); } 
+                catch (error) { window.showToast('Error al eliminar', 'error'); }
             }
         };
 
-        // Categories
+        // --- AUTHORITIES ---
+        document.getElementById('form-auth').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('auth-name').value.trim();
+            const role = document.getElementById('auth-role').value.trim();
+            const desc = document.getElementById('auth-desc').value.trim();
+            const image = document.getElementById('auth-image').value.trim();
+
+            try {
+                if (state.editingAuthId) {
+                    const oldAuth = state.authorities.find(a => a.id === state.editingAuthId);
+                    const updatedItem = { ...oldAuth, name, role, desc, image };
+                    await setDoc(doc(db, 'authorities', state.editingAuthId), updatedItem);
+                    window.showToast('Autoridad actualizada', 'success');
+                    window.cancelEditAuth();
+                } else {
+                    const newId = Date.now().toString();
+                    const newItem = { id: newId, name, role, desc, image, createdAt: Date.now() };
+                    await setDoc(doc(db, 'authorities', newId), newItem);
+                    window.showToast('Autoridad guardada', 'success');
+                    e.target.reset();
+                }
+            } catch (error) { window.showToast('Error al guardar', 'error'); }
+        });
+
+        window.editAuth = (id) => {
+            const auth = state.authorities.find(a => a.id === id);
+            if(!auth) return;
+            state.editingAuthId = id;
+            document.getElementById('auth-name').value = auth.name;
+            document.getElementById('auth-role').value = auth.role;
+            document.getElementById('auth-desc').value = auth.desc;
+            document.getElementById('auth-image').value = auth.image || '';
+            document.getElementById('btn-submit-auth').innerText = 'Actualizar';
+            document.getElementById('btn-cancel-edit-auth').classList.remove('hidden');
+            document.getElementById('form-auth').scrollIntoView({behavior: 'smooth'});
+        };
+
+        window.cancelEditAuth = () => {
+            state.editingAuthId = null;
+            document.getElementById('form-auth').reset();
+            document.getElementById('btn-submit-auth').innerText = 'Guardar';
+            document.getElementById('btn-cancel-edit-auth').classList.add('hidden');
+        };
+        document.getElementById('btn-cancel-edit-auth').addEventListener('click', window.cancelEditAuth);
+
+        window.deleteAuth = async (id) => {
+            if(confirm('¿Eliminar esta autoridad?')) {
+                try { await deleteDoc(doc(db, 'authorities', id)); window.showToast('Eliminada', 'info'); } 
+                catch(e) { window.showToast('Error al eliminar', 'error'); }
+            }
+        };
+
+        // Toggle Visibilidad Autoridades
+        document.getElementById('toggle-auth-visibility').addEventListener('change', async (e) => {
+            const isVisible = e.target.checked;
+            try {
+                await setDoc(doc(db, 'settings', 'global'), { showAuthorities: isVisible });
+                window.showToast(isVisible ? 'Sección visible' : 'Sección oculta', 'info');
+            } catch(error) {
+                window.showToast('Error de conexión', 'error');
+                e.target.checked = !isVisible;
+            }
+        });
+
+        // --- CATEGORIES ---
         document.getElementById('form-category').addEventListener('submit', async (e) => {
             e.preventDefault();
             const input = document.getElementById('cat-name');
             const newCat = input.value.trim();
-            
             if(newCat && !state.categories.includes(newCat)) {
-                try {
-                    await setDoc(doc(db, 'categories', newCat), { createdAt: Date.now() });
-                    input.value = '';
-                    window.showToast('Categoría agregada', 'success');
-                } catch (error) {
-                    window.showToast('Error al agregar categoría', 'error');
-                }
-            } else if (state.categories.includes(newCat)) {
-                window.showToast('Esa categoría ya existe', 'error');
-            }
+                try { await setDoc(doc(db, 'categories', newCat), { createdAt: Date.now() }); input.value = ''; window.showToast('Agregada', 'success'); } 
+                catch (error) { window.showToast('Error', 'error'); }
+            } else if (state.categories.includes(newCat)) { window.showToast('Ya existe', 'error'); }
         });
 
         window.deleteCategory = async (index) => {
             const catName = state.categories[index];
-            const inUse = state.news.some(n => n.category === catName);
-            
-            if(inUse) {
-                window.showToast(`No se puede eliminar. Hay artículos usando la categoría "${catName}"`, 'error');
-                return;
-            }
-
+            if(state.news.some(n => n.category === catName)) return window.showToast('En uso', 'error');
             if(confirm(`¿Eliminar la categoría "${catName}"?`)) {
-                try {
-                    await deleteDoc(doc(db, 'categories', catName));
-                    window.showToast('Categoría eliminada', 'info');
-                } catch (error) {
-                    window.showToast('Error al eliminar categoría', 'error');
-                }
+                try { await deleteDoc(doc(db, 'categories', catName)); window.showToast('Eliminada', 'info'); } 
+                catch (error) { window.showToast('Error', 'error'); }
             }
         };
 
@@ -1000,79 +974,38 @@
             e.preventDefault();
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
-            
             try {
                 await signInWithEmailAndPassword(auth, email, password);
-                window.showToast('Sesión iniciada correctamente', 'success');
+                window.showToast('Sesión iniciada', 'success');
                 document.getElementById('form-login').reset();
                 window.location.hash = '#admin';
-            } catch (error) {
-                console.error("Error de login:", error);
-                window.showToast('Credenciales incorrectas', 'error');
-            }
+            } catch (error) { window.showToast('Credenciales incorrectas', 'error'); }
         });
 
         document.getElementById('btn-logout').addEventListener('click', async () => {
-            try {
-                await signOut(auth);
-                window.showToast('Sesión cerrada', 'info');
-                window.location.hash = '#home';
-            } catch (error) {
-                window.showToast('Error al cerrar sesión', 'error');
-            }
+            try { await signOut(auth); window.showToast('Sesión cerrada', 'info'); window.location.hash = '#home'; } 
+            catch (error) { window.showToast('Error al salir', 'error'); }
         });
 
         // ==========================================
         // 7. UI UTILS & INIT
         // ==========================================
-        
-        // Toast System
         window.showToast = function(message, type = 'info') {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            
-            const colors = {
-                success: 'bg-green-600',
-                error: 'bg-red-600',
-                info: 'bg-gray-800'
-            };
-
-            const icons = {
-                success: 'fa-check-circle',
-                error: 'fa-circle-exclamation',
-                info: 'fa-info-circle'
-            };
-
+            const colors = { success: 'bg-green-600', error: 'bg-red-600', info: 'bg-gray-800' };
+            const icons = { success: 'fa-check-circle', error: 'fa-circle-exclamation', info: 'fa-info-circle' };
             toast.className = `${colors[type]} text-white px-4 py-3 rounded-xl shadow-lg flex items-center gap-3 text-sm font-medium transform transition-all duration-300 translate-y-10 opacity-0`;
             toast.innerHTML = `<i class="fa-solid ${icons[type]} text-lg"></i> ${escapeHTML(message)}`;
-            
             container.appendChild(toast);
-            
-            // Animate in
-            setTimeout(() => {
-                toast.classList.remove('translate-y-10', 'opacity-0');
-            }, 10);
-
-            // Remove after 3s
-            setTimeout(() => {
-                toast.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
+            setTimeout(() => toast.classList.remove('translate-y-10', 'opacity-0'), 10);
+            setTimeout(() => { toast.classList.add('translate-y-10', 'opacity-0'); setTimeout(() => toast.remove(), 300); }, 3000);
         }
 
-        // Mobile Menu Toggle
-        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-
-        // Set current year in footer
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-menu').classList.toggle('hidden'));
         document.getElementById('year').innerText = new Date().getFullYear();
 
-        // Boot
         initDB();
-        // El enrutamiento (handleRouting) se ejecutará automáticamente cuando Firebase valide la sesión
-
     </script>
 </body>
 </html>
